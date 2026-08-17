@@ -445,7 +445,126 @@ section {
 .empty-wardrobe p {
     line-height: 1.6;
 }
+```css
+/* CREADOR DE OUTFITS */
 
+.creator-section {
+    background: #fff8fb;
+}
+
+.creator-box {
+    max-width: 850px;
+    margin: auto;
+    background: white;
+    border: 1px solid #f1dfe6;
+    border-radius: 30px;
+    padding: 35px;
+    box-shadow: 0 20px 50px rgba(200,120,150,.10);
+}
+
+.creator-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.creator-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+}
+
+.creator-header span {
+    color: #e98bab;
+    font-size: 22px;
+}
+
+.outfit-selection {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+}
+
+.selection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.selection label {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.selection select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ead9e0;
+    border-radius: 13px;
+    background: #fff8fb;
+    color: #333;
+    outline: none;
+}
+
+.selection select:focus {
+    border-color: #e99ab5;
+}
+
+.create-outfit-button {
+    display: block;
+    margin: 30px auto 0;
+    border: none;
+    background: #171417;
+    color: white;
+    padding: 16px 30px;
+    border-radius: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.create-outfit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0,0,0,.15);
+}
+
+.created-outfit {
+    margin-top: 30px;
+    min-height: 120px;
+    border-radius: 22px;
+    background: #fff0f5;
+    padding: 25px;
+    text-align: center;
+    color: #777;
+}
+
+.created-outfit img {
+    width: 130px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 18px;
+    margin: 8px;
+}
+
+.outfit-result-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    color: #171417;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 800px) {
+
+    .outfit-selection {
+        grid-template-columns: 1fr;
+    }
+
+    .creator-box {
+        padding: 25px;
+    }
+
+}
 /* OUTFITS */
 
 .outfit-grid {
@@ -844,7 +963,7 @@ footer p {
                     type="button"
                     class="save-clothing"
                     onclick="addClothing()">
-
+updateOutfitSelectors();
                     Guardar prenda ♡
 
                 </button>
@@ -898,7 +1017,119 @@ footer p {
 
 </section>
 
+```html
+<!-- CREADOR DE OUTFITS -->
 
+<section class="creator-section" id="crear-outfit">
+
+    <div class="section-title">
+
+        <h2>
+            Crea tu outfit ✨
+        </h2>
+
+        <p>
+            Elige prendas de tu armario y crea
+            un look único.
+        </p>
+
+    </div>
+
+
+    <div class="creator-box">
+
+        <div class="creator-header">
+
+            <span>♡</span>
+
+            <h3>
+                Tu próximo look
+            </h3>
+
+            <span>♡</span>
+
+        </div>
+
+
+        <div class="outfit-selection">
+
+
+            <div class="selection">
+
+                <label>
+                    👚 Parte de arriba
+                </label>
+
+                <select id="topSelect">
+
+                    <option value="">
+                        Selecciona una prenda
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="selection">
+
+                <label>
+                    👖 Parte de abajo
+                </label>
+
+                <select id="bottomSelect">
+
+                    <option value="">
+                        Selecciona una prenda
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="selection">
+
+                <label>
+                    👟 Zapatos
+                </label>
+
+                <select id="shoesSelect">
+
+                    <option value="">
+                        Selecciona una prenda
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="create-outfit-button"
+            type="button"
+            onclick="createOutfit()">
+
+            ✨ Crear outfit
+
+        </button>
+
+
+        <div
+            id="createdOutfit"
+            class="created-outfit">
+
+            <p>
+                Tu outfit aparecerá aquí ♡
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
 <!-- OUTFITS -->
 
 <section id="outfits">
@@ -1064,7 +1295,7 @@ try {
         clothes = JSON.parse(saved);
 
         showClothes();
-
+updateOutfitSelectors();
     }
 
 } catch (error) {
@@ -1223,7 +1454,223 @@ function saveClothes() {
 /* MOSTRAR PRENDAS */
 
 function showClothes() {
+```javascript
+/* ==================================
+   ACTUALIZAR OPCIONES DE OUTFIT
+================================== */
 
+function updateOutfitSelectors() {
+
+    const topSelect =
+        document.getElementById("topSelect");
+
+    const bottomSelect =
+        document.getElementById("bottomSelect");
+
+    const shoesSelect =
+        document.getElementById("shoesSelect");
+
+
+    if (!topSelect ||
+        !bottomSelect ||
+        !shoesSelect) {
+
+        return;
+
+    }
+
+
+    topSelect.innerHTML =
+        '<option value="">Selecciona una prenda</option>';
+
+    bottomSelect.innerHTML =
+        '<option value="">Selecciona una prenda</option>';
+
+    shoesSelect.innerHTML =
+        '<option value="">Selecciona una prenda</option>';
+
+
+    clothes.forEach(function(clothing) {
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            clothing.id;
+
+        option.textContent =
+            clothing.category +
+            " — " +
+            clothing.name;
+
+
+        if (
+            clothing.category.includes("Tops") ||
+            clothing.category.includes("Vestidos") ||
+            clothing.category.includes("Chaquetas")
+        ) {
+
+            topSelect.appendChild(
+                option.cloneNode(true)
+            );
+
+        }
+
+
+        if (
+            clothing.category.includes("Pantalones")
+        ) {
+
+            bottomSelect.appendChild(
+                option.cloneNode(true)
+            );
+
+        }
+
+
+        if (
+            clothing.category.includes("Zapatos")
+        ) {
+
+            shoesSelect.appendChild(
+                option.cloneNode(true)
+            );
+
+        }
+
+    });
+
+}
+
+
+/* ==================================
+   CREAR OUTFIT
+================================== */
+
+function createOutfit() {
+
+    const topId =
+        document.getElementById(
+            "topSelect"
+        ).value;
+
+
+    const bottomId =
+        document.getElementById(
+            "bottomSelect"
+        ).value;
+
+
+    const shoesId =
+        document.getElementById(
+            "shoesSelect"
+        ).value;
+
+
+    const result =
+        document.getElementById(
+            "createdOutfit"
+        );
+
+
+    if (!topId &&
+        !bottomId &&
+        !shoesId) {
+
+        result.innerHTML = `
+
+            <p>
+                Primero selecciona algunas prendas
+                de tu armario 💗
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    const selected = [];
+
+
+    [topId, bottomId, shoesId]
+        .forEach(function(id) {
+
+            if (id) {
+
+                const clothing =
+                    clothes.find(
+                        function(item) {
+
+                            return String(item.id)
+                                === String(id);
+
+                        }
+                    );
+
+
+                if (clothing) {
+
+                    selected.push(
+                        clothing
+                    );
+
+                }
+
+            }
+
+        });
+
+
+    let html = `
+
+        <div class="outfit-result-title">
+            ✨ Tu outfit
+        </div>
+
+    `;
+
+
+    selected.forEach(function(clothing) {
+
+        html += `
+
+            <img
+                src="${clothing.image}"
+                alt="${clothing.name}"
+                title="${clothing.name}"
+            >
+
+        `;
+
+    });
+
+
+    html += `
+
+        <p style="margin-top:12px;">
+
+            ${selected
+                .map(function(item) {
+                    return item.name;
+                })
+                .join(" · ")}
+
+        </p>
+
+    `;
+
+
+    result.innerHTML =
+        html;
+
+}
+
+
+/* ACTUALIZAR AL CARGAR */
+
+updateOutfitSelectors();
     clothingCount.textContent =
         clothes.length +
         (
