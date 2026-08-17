@@ -1,732 +1,503 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>WardrobeAI ✦</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    font-family: 'DM Sans', sans-serif;
-    background: #fff8fb;
-    color: #171417;
+body{
+    font-family:Arial,sans-serif;
+    background:#fff7fa;
+    color:#211c20;
 }
 
-button,
-input,
-select {
-    font-family: inherit;
+/* NAV */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:white;
+    padding:20px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #f1dce5;
 }
 
-/* NAVBAR */
-
-.navbar {
-    height: 75px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 7%;
-    background: rgba(255,255,255,.94);
-    border-bottom: 1px solid #f2dfe7;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(12px);
+.logo{
+    font-size:25px;
+    font-weight:bold;
 }
 
-.logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
+.logo span{
+    color:#e783a4;
 }
 
-.logo span {
-    color: #e98bab;
-}
-
-.nav-links {
-    display: flex;
-    gap: 30px;
-    list-style: none;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-    font-weight: 600;
-    transition: .2s;
-}
-
-.nav-links a:hover {
-    color: #df7399;
+nav a{
+    text-decoration:none;
+    color:#333;
+    margin-left:25px;
+    font-size:14px;
 }
 
 /* HERO */
 
-.hero {
-    min-height: 620px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    padding: 75px 8%;
-    background:
-        radial-gradient(circle at 85% 20%, #ffdce8 0, transparent 25%),
-        radial-gradient(circle at 15% 80%, #ffeef5 0, transparent 30%);
+.hero{
+    min-height:600px;
+    padding:80px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+    background:linear-gradient(
+        135deg,
+        #fff7fa,
+        #ffe7ef
+    );
 }
 
-.hero-text {
-    max-width: 570px;
+.hero-text{
+    max-width:600px;
 }
 
-.badge {
-    display: inline-block;
-    background: #ffe2ec;
-    color: #bd5679;
-    padding: 9px 16px;
-    border-radius: 30px;
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 22px;
+.badge{
+    background:#ffdce8;
+    color:#c55d7f;
+    padding:10px 17px;
+    border-radius:30px;
+    display:inline-block;
+    margin-bottom:25px;
+    font-size:13px;
+    font-weight:bold;
 }
 
-.hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(48px, 6vw, 78px);
-    line-height: 1;
-    margin-bottom: 25px;
+h1{
+    font-family:Georgia,serif;
+    font-size:70px;
+    line-height:1;
+    margin-bottom:25px;
 }
 
-.hero h1 span {
-    color: #df789b;
+h1 span{
+    color:#df789b;
 }
 
-.hero p {
-    color: #665e62;
-    font-size: 17px;
-    line-height: 1.7;
-    margin-bottom: 32px;
+.hero p{
+    color:#6d6368;
+    line-height:1.7;
+    font-size:17px;
+    margin-bottom:30px;
 }
 
-/* BOTONES */
-
-.main-button {
-    display: inline-block;
-    text-decoration: none;
-    border: none;
-    background: #171417;
-    color: white;
-    padding: 16px 28px;
-    border-radius: 15px;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: .25s;
+.main-button{
+    display:inline-block;
+    background:#211c20;
+    color:white;
+    padding:16px 25px;
+    border-radius:15px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:15px;
 }
 
-.main-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(0,0,0,.15);
+.main-button:hover{
+    transform:translateY(-2px);
 }
 
 /* HERO CARD */
 
-.hero-card {
-    width: 380px;
-    min-height: 420px;
-    background: white;
-    border-radius: 35px;
-    padding: 25px;
-    box-shadow: 0 25px 70px rgba(200,120,150,.18);
-    transform: rotate(2deg);
+.hero-card{
+    background:white;
+    padding:20px;
+    width:350px;
+    border-radius:30px;
+    box-shadow:0 20px 50px #d99bad44;
+    transform:rotate(2deg);
 }
 
-.fake-photo {
-    height: 300px;
-    border-radius: 25px;
-    background: linear-gradient(145deg,#f7d4df,#fff,#eec3d3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 100px;
+.hero-image{
+    height:300px;
+    border-radius:22px;
+    background:linear-gradient(
+        145deg,
+        #f6cedc,
+        white,
+        #efbfd1
+    );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:100px;
 }
 
-.card-info {
-    padding: 20px 5px;
+/* SECTIONS */
+
+section{
+    padding:80px 8%;
 }
 
-.card-info h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
+.title{
+    text-align:center;
+    margin-bottom:45px;
 }
 
-.card-info p {
-    color: #777;
-    font-size: 13px;
-    margin-top: 5px;
+.title h2{
+    font-family:Georgia,serif;
+    font-size:45px;
 }
 
-/* SECCIONES */
-
-section {
-    padding: 90px 8%;
+.title p{
+    color:#777;
+    margin-top:10px;
 }
 
-.section-title {
-    text-align: center;
-    margin-bottom: 50px;
+/* FEATURES */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
 }
 
-.section-title h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 45px;
+.feature{
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    border:1px solid #f0dfe6;
 }
 
-.section-title p {
-    color: #777;
-    margin-top: 10px;
+.feature-icon{
+    font-size:35px;
+    margin-bottom:15px;
 }
 
-/* FUNCIONES */
-
-.features {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 25px;
+.feature h3{
+    margin-bottom:10px;
 }
 
-.feature {
-    background: white;
-    border: 1px solid #f1dfe6;
-    padding: 35px;
-    border-radius: 25px;
-    transition: .3s;
-}
-
-.feature:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 15px 40px rgba(200,120,150,.12);
-}
-
-.feature-icon {
-    width: 55px;
-    height: 55px;
-    background: #ffe5ee;
-    border-radius: 17px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-    margin-bottom: 20px;
-}
-
-.feature h3 {
-    margin-bottom: 10px;
-}
-
-.feature p {
-    color: #777;
-    line-height: 1.6;
-    font-size: 14px;
+.feature p{
+    color:#777;
+    line-height:1.6;
 }
 
 /* ARMARIO */
 
-.wardrobe-section {
-    background: #171417;
-    color: white;
+#armario{
+    background:#201c1f;
+    color:white;
 }
 
-.wardrobe-section .section-title p {
-    color: #bdb7ba;
+#armario .title p{
+    color:#aaa;
 }
 
-.wardrobe-container {
-    max-width: 1100px;
-    margin: auto;
+.wardrobe-box{
+    max-width:1100px;
+    margin:auto;
 }
 
-/* AGREGAR PRENDA */
+/* ADD */
 
-.add-clothing {
-    background: #211e20;
-    border: 1px dashed #e99ab5;
-    border-radius: 30px;
-    padding: 40px;
-    text-align: center;
-    margin-bottom: 45px;
+.add-box{
+    background:#292427;
+    border:1px dashed #e997b3;
+    border-radius:25px;
+    padding:40px;
+    text-align:center;
+    margin-bottom:30px;
 }
 
-.upload-icon {
-    font-size: 50px;
-    margin-bottom: 15px;
+.add-box h3{
+    font-family:Georgia,serif;
+    font-size:28px;
+    margin-bottom:10px;
 }
 
-.add-clothing h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    margin-bottom: 10px;
+.add-box p{
+    color:#aaa;
+    margin-bottom:25px;
 }
 
-.add-clothing p {
-    color: #bdb7ba;
-    margin-bottom: 25px;
+.upload{
+    display:inline-block;
+    background:#f09ab7;
+    color:#211c20;
+    padding:14px 22px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.upload-button {
-    display: inline-block;
-    background: #f19abb;
-    color: #171417;
-    padding: 14px 25px;
-    border-radius: 13px;
-    cursor: pointer;
-    font-weight: 700;
-    transition: .2s;
+#photoInput{
+    display:none;
 }
 
-.upload-button:hover {
-    transform: translateY(-2px);
+.form{
+    max-width:450px;
+    margin:25px auto 0;
+    display:none;
+    flex-direction:column;
+    gap:12px;
 }
 
-#clothingInput {
-    display: none;
+.form input,
+.form select{
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #555;
+    background:#211c20;
+    color:white;
 }
 
-/* FORMULARIO */
-
-.clothing-form {
-    max-width: 450px;
-    margin: 25px auto 0;
-    display: none;
-    gap: 12px;
-    flex-direction: column;
+.save{
+    background:#f09ab7;
+    border:none;
+    padding:14px;
+    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.clothing-form input,
-.clothing-form select {
-    width: 100%;
-    padding: 15px;
-    border-radius: 13px;
-    border: 1px solid #4a4447;
-    background: #2b2729;
-    color: white;
-    outline: none;
+/* CLOTHES */
+
+.clothes-box{
+    background:#292427;
+    padding:30px;
+    border-radius:25px;
 }
 
-.clothing-form input:focus,
-.clothing-form select:focus {
-    border-color: #f19abb;
+.clothes-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:25px;
 }
 
-.save-clothing {
-    border: none;
-    background: #f19abb;
-    color: #171417;
-    padding: 15px;
-    border-radius: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: .2s;
+#count{
+    color:#f09ab7;
 }
 
-.save-clothing:hover {
-    transform: translateY(-2px);
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
 }
 
-/* MIS PRENDAS */
-
-.my-clothes {
-    background: #211e20;
-    border-radius: 30px;
-    padding: 30px;
+.card{
+    background:#211c20;
+    border-radius:20px;
+    overflow:hidden;
 }
 
-.clothes-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
 }
 
-.clothes-header h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
+.card-info{
+    padding:15px;
 }
 
-#clothingCount {
-    color: #e99ab5;
-    font-size: 13px;
+.card-info h4{
+    font-family:Georgia,serif;
+    font-size:20px;
+    margin-bottom:7px;
 }
 
-.clothing-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 20px;
+.card-info p{
+    color:#aaa;
+    font-size:13px;
 }
 
-.clothing-card {
-    background: #2b2729;
-    border-radius: 22px;
-    overflow: hidden;
-    border: 1px solid #393436;
-    animation: appear .35s ease;
+.delete{
+    border:none;
+    background:none;
+    color:#ef91af;
+    cursor:pointer;
+    margin-top:12px;
 }
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.empty{
+    text-align:center;
+    grid-column:1/-1;
+    color:#aaa;
+    padding:40px;
+    font-size:15px;
 }
 
-.clothing-photo {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
+/* CREAR OUTFIT */
+
+.creator{
+    background:#fff7fa;
 }
 
-.clothing-details {
-    padding: 17px;
+.creator-box{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    border-radius:30px;
+    padding:35px;
+    border:1px solid #efdce5;
+    box-shadow:0 15px 40px #d99bad22;
 }
 
-.clothing-details h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    margin-bottom: 7px;
+.creator-box h3{
+    text-align:center;
+    font-family:Georgia,serif;
+    font-size:30px;
+    margin-bottom:30px;
 }
 
-.clothing-details p {
-    color: #c1bbbe;
-    font-size: 12px;
+.selects{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
 }
 
-.delete-clothing {
-    margin-top: 14px;
-    border: none;
-    background: transparent;
-    color: #e99ab5;
-    cursor: pointer;
-    font-size: 12px;
+.select-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
 }
 
-.empty-wardrobe {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 50px;
-    color: #aaa;
+.select-group label{
+    font-size:13px;
+    font-weight:bold;
 }
 
-.empty-wardrobe div {
-    font-size: 50px;
-    margin-bottom: 15px;
+.select-group select{
+    padding:14px;
+    border:1px solid #ead9e1;
+    border-radius:12px;
+    background:#fff7fa;
 }
 
-.empty-wardrobe p {
-    line-height: 1.6;
-}
-```css
-/* CREADOR DE OUTFITS */
-
-.creator-section {
-    background: #fff8fb;
-}
-
-.creator-box {
-    max-width: 850px;
-    margin: auto;
-    background: white;
-    border: 1px solid #f1dfe6;
-    border-radius: 30px;
-    padding: 35px;
-    box-shadow: 0 20px 50px rgba(200,120,150,.10);
+.create{
+    display:block;
+    margin:30px auto 0;
+    background:#211c20;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.creator-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 30px;
+.result{
+    margin-top:30px;
+    padding:25px;
+    border-radius:20px;
+    background:#fff0f5;
+    text-align:center;
+    min-height:100px;
 }
 
-.creator-header h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-}
-
-.creator-header span {
-    color: #e98bab;
-    font-size: 22px;
-}
-
-.outfit-selection {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 18px;
-}
-
-.selection {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.selection label {
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.selection select {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #ead9e0;
-    border-radius: 13px;
-    background: #fff8fb;
-    color: #333;
-    outline: none;
-}
-
-.selection select:focus {
-    border-color: #e99ab5;
-}
-
-.create-outfit-button {
-    display: block;
-    margin: 30px auto 0;
-    border: none;
-    background: #171417;
-    color: white;
-    padding: 16px 30px;
-    border-radius: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: .25s;
-}
-
-.create-outfit-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(0,0,0,.15);
-}
-
-.created-outfit {
-    margin-top: 30px;
-    min-height: 120px;
-    border-radius: 22px;
-    background: #fff0f5;
-    padding: 25px;
-    text-align: center;
-    color: #777;
-}
-
-.created-outfit img {
-    width: 130px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 18px;
-    margin: 8px;
-}
-
-.outfit-result-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 25px;
-    color: #171417;
-    margin-bottom: 15px;
-}
-
-@media (max-width: 800px) {
-
-    .outfit-selection {
-        grid-template-columns: 1fr;
-    }
-
-    .creator-box {
-        padding: 25px;
-    }
-
-}
-/* OUTFITS */
-
-.outfit-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 25px;
-}
-
-.outfit {
-    background: white;
-    border-radius: 25px;
-    overflow: hidden;
-    border: 1px solid #f1dfe6;
-}
-
-.outfit-image {
-    height: 280px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 80px;
-    background: #fcebf1;
-}
-
-.outfit:nth-child(2) .outfit-image {
-    background: #f3edf4;
-}
-
-.outfit:nth-child(3) .outfit-image {
-    background: #eee8e2;
-}
-
-.outfit-info {
-    padding: 22px;
-}
-
-.outfit-info h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 23px;
-}
-
-.outfit-info p {
-    color: #777;
-    font-size: 13px;
-    margin-top: 7px;
-}
-
-/* CTA */
-
-.cta {
-    text-align: center;
-    background: #ffe5ee;
-}
-
-.cta h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 45px;
-    margin-bottom: 15px;
-}
-
-.cta p {
-    color: #695f64;
-    margin-bottom: 25px;
+.result img{
+    width:140px;
+    height:160px;
+    object-fit:cover;
+    border-radius:15px;
+    margin:5px;
 }
 
 /* FOOTER */
 
-footer {
-    background: #171417;
-    color: white;
-    text-align: center;
-    padding: 35px 20px;
+footer{
+    background:#211c20;
+    color:white;
+    text-align:center;
+    padding:35px;
 }
 
-footer p {
-    color: #aaa;
-    font-size: 13px;
-    margin-top: 7px;
+footer p{
+    color:#aaa;
+    margin-top:8px;
 }
 
-/* MÓVIL */
+/* MOBILE */
 
-@media (max-width: 800px) {
+@media(max-width:800px){
 
-    .navbar {
-        padding: 0 5%;
+    nav .links{
+        display:none;
     }
 
-    .nav-links {
-        display: none;
+    .hero{
+        flex-direction:column;
+        text-align:center;
     }
 
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 55px;
+    h1{
+        font-size:50px;
     }
 
-    .hero-card {
-        width: 90%;
-        max-width: 380px;
+    .hero-card{
+        width:90%;
     }
 
     .features,
-    .outfit-grid,
-    .clothing-grid {
-        grid-template-columns: 1fr;
+    .grid,
+    .selects{
+        grid-template-columns:1fr;
     }
 
-    section {
-        padding: 65px 6%;
+    section{
+        padding:60px 6%;
     }
 
-    .add-clothing,
-    .my-clothes {
-        padding: 25px;
-    }
 }
 
 </style>
+
 </head>
 
 
 <body>
 
-<!-- NAVBAR -->
 
-<header class="navbar">
+<!-- NAV -->
+
+<nav>
 
     <div class="logo">
         Wardrobe<span>AI</span> ✦
     </div>
 
-    <ul class="nav-links">
+    <div class="links">
 
-        <li>
-            <a href="#inicio">
-                Inicio
-            </a>
-        </li>
+        <a href="#inicio">
+            Inicio
+        </a>
 
-        <li>
-            <a href="#funciones">
-                Funciones
-            </a>
-        </li>
+        <a href="#armario">
+            Mi armario
+        </a>
 
-        <li>
-            <a href="#armario">
-                Mi armario
-            </a>
-        </li>
+        <a href="#crear">
+            Crear outfit
+        </a>
 
-        <li>
-            <a href="#outfits">
-                Outfits
-            </a>
-        </li>
+    </div>
 
-    </ul>
-
-</header>
+</nav>
 
 
 <!-- INICIO -->
@@ -735,9 +506,9 @@ footer p {
 
     <div class="hero-text">
 
-        <span class="badge">
+        <div class="badge">
             ✦ Tu estilo, organizado
-        </span>
+        </div>
 
         <h1>
             Tu armario.<br>
@@ -745,35 +516,34 @@ footer p {
         </h1>
 
         <p>
-            Organiza tus prendas, descubre nuevas
-            combinaciones y crea looks que representen
-            tu personalidad.
+            Guarda tus prendas, organiza tu armario
+            y crea outfits que representen tu estilo.
         </p>
 
-      <button class="main-button" onclick="irAlArmario()">
-    Explorar mi armario →
-</button>
+        <button
+            class="main-button"
+            onclick="irAlArmario()">
+
+            Explorar mi armario →
+
+        </button>
 
     </div>
 
 
     <div class="hero-card">
 
-        <div class="fake-photo">
+        <div class="hero-image">
             👗
         </div>
 
-        <div class="card-info">
+        <h3 style="margin-top:20px;">
+            Today's look ♡
+        </h3>
 
-            <h3>
-                Today's look ♡
-            </h3>
-
-            <p>
-                Elegante · Casual · Girly
-            </p>
-
-        </div>
+        <p style="color:#777;margin-top:5px;">
+            Elegant · Girly · Chic
+        </p>
 
     </div>
 
@@ -782,17 +552,16 @@ footer p {
 
 <!-- FUNCIONES -->
 
-<section id="funciones">
+<section>
 
-    <div class="section-title">
+    <div class="title">
 
         <h2>
             Todo para tu estilo
         </h2>
 
         <p>
-            Una forma más bonita y sencilla
-            de organizar tu ropa.
+            Tu armario digital en un solo lugar.
         </p>
 
     </div>
@@ -807,13 +576,12 @@ footer p {
             </div>
 
             <h3>
-                Organiza tu ropa
+                Organiza
             </h3>
 
             <p>
-                Guarda tus prendas y tenlas
-                organizadas para encontrarlas
-                fácilmente.
+                Guarda todas tus prendas
+                en tu armario digital.
             </p>
 
         </div>
@@ -826,12 +594,12 @@ footer p {
             </div>
 
             <h3>
-                Crea outfits
+                Combina
             </h3>
 
             <p>
-                Combina tus prendas y descubre
-                diferentes estilos para cada ocasión.
+                Selecciona tus prendas
+                para crear nuevos looks.
             </p>
 
         </div>
@@ -844,12 +612,12 @@ footer p {
             </div>
 
             <h3>
-                Descubre tu estilo
+                Inspírate
             </h3>
 
             <p>
-                Explora combinaciones y encuentra
-                los looks que más van contigo.
+                Descubre diferentes
+                posibilidades para tu estilo.
             </p>
 
         </div>
@@ -861,30 +629,27 @@ footer p {
 
 <!-- ARMARIO -->
 
-<section class="wardrobe-section" id="armario">
+<section id="armario">
 
-    <div class="section-title">
+    <div class="title">
 
         <h2>
             Mi armario ♡
         </h2>
 
         <p>
-            Agrega tus prendas y crea
-            tu propio armario digital.
+            Agrega tus prendas.
         </p>
 
     </div>
 
 
-    <div class="wardrobe-container">
+    <div class="wardrobe-box">
 
 
-        <!-- AGREGAR PRENDA -->
+        <div class="add-box">
 
-        <div class="add-clothing">
-
-            <div class="upload-icon">
+            <div style="font-size:50px;">
                 👗
             </div>
 
@@ -893,14 +658,13 @@ footer p {
             </h3>
 
             <p>
-                Sube una fotografía de tu ropa
-                y personalízala.
+                Sube una fotografía de tu ropa.
             </p>
 
 
             <label
-                for="clothingInput"
-                class="upload-button">
+                class="upload"
+                for="photoInput">
 
                 + Elegir fotografía
 
@@ -909,61 +673,60 @@ footer p {
 
             <input
                 type="file"
-                id="clothingInput"
+                id="photoInput"
                 accept="image/*"
             >
 
 
             <div
-                id="clothingForm"
-                class="clothing-form">
+                class="form"
+                id="form">
 
 
                 <input
                     type="text"
-                    id="clothingName"
+                    id="name"
                     placeholder="Nombre de la prenda"
                 >
 
 
-                <select id="clothingCategory">
+                <select id="category">
 
                     <option value="">
-                        Selecciona una categoría
+                        Selecciona categoría
                     </option>
 
-                    <option value="👚 Tops">
-                        👚 Tops
+                    <option value="top">
+                        👚 Parte de arriba
                     </option>
 
-                    <option value="👖 Pantalones">
-                        👖 Pantalones
+                    <option value="bottom">
+                        👖 Parte de abajo
                     </option>
 
-                    <option value="👗 Vestidos">
-                        👗 Vestidos
+                    <option value="dress">
+                        👗 Vestido
                     </option>
 
-                    <option value="🧥 Chaquetas">
-                        🧥 Chaquetas
+                    <option value="jacket">
+                        🧥 Chaqueta
                     </option>
 
-                    <option value="👟 Zapatos">
+                    <option value="shoes">
                         👟 Zapatos
                     </option>
 
-                    <option value="👜 Accesorios">
-                        👜 Accesorios
+                    <option value="accessory">
+                        👜 Accesorio
                     </option>
 
                 </select>
 
 
                 <button
-                    type="button"
-                    class="save-clothing"
-                    onclick="addClothing()">
-updateOutfitSelectors();
+                    class="save"
+                    onclick="saveClothing()">
+
                     Guardar prenda ♡
 
                 </button>
@@ -973,9 +736,7 @@ updateOutfitSelectors();
         </div>
 
 
-        <!-- MIS PRENDAS -->
-
-        <div class="my-clothes">
+        <div class="clothes-box">
 
             <div class="clothes-header">
 
@@ -983,7 +744,7 @@ updateOutfitSelectors();
                     Mis prendas
                 </h3>
 
-                <span id="clothingCount">
+                <span id="count">
                     0 prendas
                 </span>
 
@@ -991,23 +752,17 @@ updateOutfitSelectors();
 
 
             <div
-                id="clothingGrid"
-                class="clothing-grid">
+                class="grid"
+                id="grid">
 
+                <div class="empty">
 
-                <div class="empty-wardrobe">
+                    🛍️<br><br>
 
-                    <div>
-                        🛍️
-                    </div>
-
-                    <p>
-                        Tu armario está esperando<br>
-                        sus primeras prendas.
-                    </p>
+                    Tu armario está esperando
+                    sus primeras prendas.
 
                 </div>
-
 
             </div>
 
@@ -1017,20 +772,21 @@ updateOutfitSelectors();
 
 </section>
 
-```html
-<!-- CREADOR DE OUTFITS -->
 
-<section class="creator-section" id="crear-outfit">
+<!-- CREAR OUTFIT -->
 
-    <div class="section-title">
+<section
+    class="creator"
+    id="crear">
+
+    <div class="title">
 
         <h2>
-            Crea tu outfit ✨
+            Crear outfit ✨
         </h2>
 
         <p>
-            Elige prendas de tu armario y crea
-            un look único.
+            Combina las prendas de tu armario.
         </p>
 
     </div>
@@ -1038,29 +794,21 @@ updateOutfitSelectors();
 
     <div class="creator-box">
 
-        <div class="creator-header">
-
-            <span>♡</span>
-
-            <h3>
-                Tu próximo look
-            </h3>
-
-            <span>♡</span>
-
-        </div>
+        <h3>
+            Tu próximo look ♡
+        </h3>
 
 
-        <div class="outfit-selection">
+        <div class="selects">
 
 
-            <div class="selection">
+            <div class="select-group">
 
                 <label>
                     👚 Parte de arriba
                 </label>
 
-                <select id="topSelect">
+                <select id="top">
 
                     <option value="">
                         Selecciona una prenda
@@ -1071,13 +819,13 @@ updateOutfitSelectors();
             </div>
 
 
-            <div class="selection">
+            <div class="select-group">
 
                 <label>
                     👖 Parte de abajo
                 </label>
 
-                <select id="bottomSelect">
+                <select id="bottom">
 
                     <option value="">
                         Selecciona una prenda
@@ -1088,13 +836,13 @@ updateOutfitSelectors();
             </div>
 
 
-            <div class="selection">
+            <div class="select-group">
 
                 <label>
                     👟 Zapatos
                 </label>
 
-                <select id="shoesSelect">
+                <select id="shoes">
 
                     <option value="">
                         Selecciona una prenda
@@ -1108,8 +856,7 @@ updateOutfitSelectors();
 
 
         <button
-            class="create-outfit-button"
-            type="button"
+            class="create"
             onclick="createOutfit()">
 
             ✨ Crear outfit
@@ -1118,97 +865,10 @@ updateOutfitSelectors();
 
 
         <div
-            id="createdOutfit"
-            class="created-outfit">
+            class="result"
+            id="result">
 
-            <p>
-                Tu outfit aparecerá aquí ♡
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-<!-- OUTFITS -->
-
-<section id="outfits">
-
-    <div class="section-title">
-
-        <h2>
-            Ideas de outfits
-        </h2>
-
-        <p>
-            Un poquito de inspiración
-            para tu próximo look ♡
-        </p>
-
-    </div>
-
-
-    <div class="outfit-grid">
-
-        <div class="outfit">
-
-            <div class="outfit-image">
-                👚
-            </div>
-
-            <div class="outfit-info">
-
-                <h3>
-                    Soft Girl
-                </h3>
-
-                <p>
-                    Suave · Femenino · Casual
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="outfit">
-
-            <div class="outfit-image">
-                🧥
-            </div>
-
-            <div class="outfit-info">
-
-                <h3>
-                    Clean Girl
-                </h3>
-
-                <p>
-                    Minimalista · Elegante · Chic
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="outfit">
-
-            <div class="outfit-image">
-                👖
-            </div>
-
-            <div class="outfit-info">
-
-                <h3>
-                    Casual Chic
-                </h3>
-
-                <p>
-                    Cómodo · Moderno · Versátil
-                </p>
-
-            </div>
+            Tu outfit aparecerá aquí ♡
 
         </div>
 
@@ -1216,28 +876,6 @@ updateOutfitSelectors();
 
 </section>
 
-
-<!-- CTA -->
-
-<section class="cta">
-
-    <h2>
-        Tu estilo comienza aquí ✨
-    </h2>
-
-    <p>
-        Organiza, combina y disfruta
-        de tu armario.
-    </p>
-
-    <a href="#armario" class="main-button">
-        Crear mi armario
-    </a>
-
-</section>
-
-
-<!-- FOOTER -->
 
 <footer>
 
@@ -1246,77 +884,88 @@ updateOutfitSelectors();
     </strong>
 
     <p>
-        Diseñado para hacer de tu armario
-        un lugar más bonito.
+        Tu estilo, tu armario, tu esencia.
     </p>
 
 </footer>
 
 
-<!-- JAVASCRIPT -->
-
 <script>
+
+
+/* =================================
+   DATOS
+================================= */
 
 let clothes = [];
 
 
-/* ELEMENTOS */
+/* =================================
+   ELEMENTOS
+================================= */
 
-const clothingInput =
-    document.getElementById("clothingInput");
+const photoInput =
+    document.getElementById("photoInput");
 
-const clothingForm =
-    document.getElementById("clothingForm");
+const form =
+    document.getElementById("form");
 
-const clothingName =
-    document.getElementById("clothingName");
+const grid =
+    document.getElementById("grid");
 
-const clothingCategory =
-    document.getElementById("clothingCategory");
+const count =
+    document.getElementById("count");
 
-const clothingGrid =
-    document.getElementById("clothingGrid");
+const nameInput =
+    document.getElementById("name");
 
-const clothingCount =
-    document.getElementById("clothingCount");
+const categoryInput =
+    document.getElementById("category");
 
 
-/* CARGAR PRENDAS GUARDADAS */
+/* =================================
+   IR AL ARMARIO
+================================= */
 
-try {
+function irAlArmario(){
 
-    const saved =
-        localStorage.getItem(
-            "wardrobeAI_clothes"
-        );
-
-    if (saved) {
-
-        clothes = JSON.parse(saved);
-
-        showClothes();
-updateOutfitSelectors();
-    }
-
-} catch (error) {
-
-    console.log(
-        "No se pudieron cargar las prendas."
-    );
+    document
+        .getElementById("armario")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
 
 }
 
 
-/* CUANDO SE ELIGE UNA FOTO */
+/* =================================
+   CARGAR PRENDAS
+================================= */
 
-clothingInput.addEventListener(
+const saved =
+    localStorage.getItem("wardrobeAI");
+
+if(saved){
+
+    clothes =
+        JSON.parse(saved);
+
+}
+
+render();
+
+
+/* =================================
+   ELEGIR FOTO
+================================= */
+
+photoInput.addEventListener(
     "change",
-    function () {
+    function(){
 
-        if (this.files.length > 0) {
+        if(this.files.length > 0){
 
-            clothingForm.style.display =
-                "flex";
+            form.style.display="flex";
 
         }
 
@@ -1324,24 +973,26 @@ clothingInput.addEventListener(
 );
 
 
-/* GUARDAR PRENDA */
+/* =================================
+   GUARDAR PRENDA
+================================= */
 
-function addClothing() {
+function saveClothing(){
 
     const file =
-        clothingInput.files[0];
+        photoInput.files[0];
 
     const name =
-        clothingName.value.trim();
+        nameInput.value.trim();
 
     const category =
-        clothingCategory.value;
+        categoryInput.value;
 
 
-    if (!file) {
+    if(!file){
 
         alert(
-            "Primero elige una fotografía 👗"
+            "Primero selecciona una foto 👗"
         );
 
         return;
@@ -1349,26 +1000,22 @@ function addClothing() {
     }
 
 
-    if (name === "") {
+    if(!name){
 
         alert(
-            "Ponle un nombre a tu prenda 💗"
+            "Escribe el nombre de la prenda 💗"
         );
-
-        clothingName.focus();
 
         return;
 
     }
 
 
-    if (category === "") {
+    if(!category){
 
         alert(
             "Selecciona una categoría ✨"
         );
-
-        clothingCategory.focus();
 
         return;
 
@@ -1379,49 +1026,47 @@ function addClothing() {
         new FileReader();
 
 
-    reader.onload =
-        function (event) {
+    reader.onload=function(e){
 
-            const clothing = {
+        const clothing={
 
-                id: Date.now(),
+            id:Date.now(),
 
-                image:
-                    event.target.result,
+            image:e.target.result,
 
-                name:
-                    name,
+            name:name,
 
-                category:
-                    category
-
-            };
-
-
-            clothes.push(clothing);
-
-
-            saveClothes();
-
-
-            showClothes();
-
-
-            clothingInput.value = "";
-
-            clothingName.value = "";
-
-            clothingCategory.value = "";
-
-            clothingForm.style.display =
-                "none";
-
-
-            alert(
-                "¡Prenda agregada a tu armario! 🎀"
-            );
+            category:category
 
         };
+
+
+        clothes.push(clothing);
+
+
+        localStorage.setItem(
+            "wardrobeAI",
+            JSON.stringify(clothes)
+        );
+
+
+        render();
+
+
+        photoInput.value="";
+
+        nameInput.value="";
+
+        categoryInput.value="";
+
+        form.style.display="none";
+
+
+        alert(
+            "¡Prenda guardada! 🎀"
+        );
+
+    };
 
 
     reader.readAsDataURL(file);
@@ -1429,375 +1074,221 @@ function addClothing() {
 }
 
 
-/* GUARDAR EN EL NAVEGADOR */
+/* =================================
+   MOSTRAR PRENDAS
+================================= */
 
-function saveClothes() {
+function render(){
 
-    try {
-
-        localStorage.setItem(
-            "wardrobeAI_clothes",
-            JSON.stringify(clothes)
-        );
-
-    } catch (error) {
-
-        alert(
-            "La imagen es demasiado grande para guardarla en el navegador. Prueba con una foto más pequeña. 💗"
-        );
-
-    }
-
-}
-
-
-/* MOSTRAR PRENDAS */
-
-function showClothes() {
-```javascript
-/* ==================================
-   ACTUALIZAR OPCIONES DE OUTFIT
-================================== */
-
-function updateOutfitSelectors() {
-
-    const topSelect =
-        document.getElementById("topSelect");
-
-    const bottomSelect =
-        document.getElementById("bottomSelect");
-
-    const shoesSelect =
-        document.getElementById("shoesSelect");
-
-
-    if (!topSelect ||
-        !bottomSelect ||
-        !shoesSelect) {
-
-        return;
-
-    }
-
-
-    topSelect.innerHTML =
-        '<option value="">Selecciona una prenda</option>';
-
-    bottomSelect.innerHTML =
-        '<option value="">Selecciona una prenda</option>';
-
-    shoesSelect.innerHTML =
-        '<option value="">Selecciona una prenda</option>';
-
-
-    clothes.forEach(function(clothing) {
-
-        const option =
-            document.createElement("option");
-
-        option.value =
-            clothing.id;
-
-        option.textContent =
-            clothing.category +
-            " — " +
-            clothing.name;
-
-
-        if (
-            clothing.category.includes("Tops") ||
-            clothing.category.includes("Vestidos") ||
-            clothing.category.includes("Chaquetas")
-        ) {
-
-            topSelect.appendChild(
-                option.cloneNode(true)
-            );
-
-        }
-
-
-        if (
-            clothing.category.includes("Pantalones")
-        ) {
-
-            bottomSelect.appendChild(
-                option.cloneNode(true)
-            );
-
-        }
-
-
-        if (
-            clothing.category.includes("Zapatos")
-        ) {
-
-            shoesSelect.appendChild(
-                option.cloneNode(true)
-            );
-
-        }
-
-    });
-
-}
-
-
-/* ==================================
-   CREAR OUTFIT
-================================== */
-
-function createOutfit() {
-
-    const topId =
-        document.getElementById(
-            "topSelect"
-        ).value;
-
-
-    const bottomId =
-        document.getElementById(
-            "bottomSelect"
-        ).value;
-
-
-    const shoesId =
-        document.getElementById(
-            "shoesSelect"
-        ).value;
-
-
-    const result =
-        document.getElementById(
-            "createdOutfit"
-        );
-
-
-    if (!topId &&
-        !bottomId &&
-        !shoesId) {
-
-        result.innerHTML = `
-
-            <p>
-                Primero selecciona algunas prendas
-                de tu armario 💗
-            </p>
-
-        `;
-
-        return;
-
-    }
-
-
-    const selected = [];
-
-
-    [topId, bottomId, shoesId]
-        .forEach(function(id) {
-
-            if (id) {
-
-                const clothing =
-                    clothes.find(
-                        function(item) {
-
-                            return String(item.id)
-                                === String(id);
-
-                        }
-                    );
-
-
-                if (clothing) {
-
-                    selected.push(
-                        clothing
-                    );
-
-                }
-
-            }
-
-        });
-
-
-    let html = `
-
-        <div class="outfit-result-title">
-            ✨ Tu outfit
-        </div>
-
-    `;
-
-
-    selected.forEach(function(clothing) {
-
-        html += `
-
-            <img
-                src="${clothing.image}"
-                alt="${clothing.name}"
-                title="${clothing.name}"
-            >
-
-        `;
-
-    });
-
-
-    html += `
-
-        <p style="margin-top:12px;">
-
-            ${selected
-                .map(function(item) {
-                    return item.name;
-                })
-                .join(" · ")}
-
-        </p>
-
-    `;
-
-
-    result.innerHTML =
-        html;
-
-}
-
-
-/* ACTUALIZAR AL CARGAR */
-
-updateOutfitSelectors();
-    clothingCount.textContent =
+    count.textContent =
         clothes.length +
         (
-            clothes.length === 1
+            clothes.length===1
             ? " prenda"
             : " prendas"
         );
 
 
-    if (clothes.length === 0) {
+    if(clothes.length===0){
 
-        clothingGrid.innerHTML = `
+        grid.innerHTML=`
 
-            <div class="empty-wardrobe">
+            <div class="empty">
 
-                <div>
-                    🛍️
-                </div>
+                🛍️<br><br>
 
-                <p>
-                    Tu armario está esperando<br>
-                    sus primeras prendas.
-                </p>
+                Tu armario está esperando
+                sus primeras prendas.
 
             </div>
 
         `;
+
+        updateSelectors();
 
         return;
 
     }
 
 
-    clothingGrid.innerHTML = "";
+    grid.innerHTML="";
 
 
     clothes.forEach(
-        function (clothing) {
-
+        function(item){
 
             const card =
-                document.createElement(
-                    "div"
+                document.createElement("div");
+
+            card.className="card";
+
+
+            card.innerHTML=`
+
+                <img
+                    src="${item.image}"
+                    alt="${item.name}"
+                >
+
+                <div class="card-info">
+
+                    <h4>
+                        ${item.name}
+                    </h4>
+
+                    <p>
+                        ${getCategoryName(item.category)}
+                    </p>
+
+                    <button
+                        class="delete"
+                        onclick="deleteClothing(${item.id})">
+
+                        ✕ Eliminar
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            grid.appendChild(card);
+
+        }
+    );
+
+
+    updateSelectors();
+
+}
+
+
+/* =================================
+   NOMBRE CATEGORÍA
+================================= */
+
+function getCategoryName(category){
+
+    const names={
+
+        top:"👚 Parte de arriba",
+
+        bottom:"👖 Parte de abajo",
+
+        dress:"👗 Vestido",
+
+        jacket:"🧥 Chaqueta",
+
+        shoes:"👟 Zapatos",
+
+        accessory:"👜 Accesorio"
+
+    };
+
+
+    return names[category] || category;
+
+}
+
+
+/* =================================
+   ELIMINAR
+================================= */
+
+function deleteClothing(id){
+
+    clothes =
+        clothes.filter(
+            function(item){
+
+                return item.id!==id;
+
+            }
+        );
+
+
+    localStorage.setItem(
+        "wardrobeAI",
+        JSON.stringify(clothes)
+    );
+
+
+    render();
+
+}
+
+
+/* =================================
+   ACTUALIZAR SELECTORES
+================================= */
+
+function updateSelectors(){
+
+    const top =
+        document.getElementById("top");
+
+    const bottom =
+        document.getElementById("bottom");
+
+    const shoes =
+        document.getElementById("shoes");
+
+
+    top.innerHTML=
+        '<option value="">Selecciona una prenda</option>';
+
+    bottom.innerHTML=
+        '<option value="">Selecciona una prenda</option>';
+
+    shoes.innerHTML=
+        '<option value="">Selecciona una prenda</option>';
+
+
+    clothes.forEach(
+        function(item){
+
+            const option =
+                document.createElement("option");
+
+
+            option.value =
+                item.id;
+
+
+            option.textContent =
+                item.name;
+
+
+            if(
+                item.category==="top" ||
+                item.category==="dress" ||
+                item.category==="jacket"
+            ){
+
+                top.appendChild(
+                    option.cloneNode(true)
                 );
 
-
-            card.className =
-                "clothing-card";
+            }
 
 
-            const image =
-                document.createElement(
-                    "img"
+            if(item.category==="bottom"){
+
+                bottom.appendChild(
+                    option.cloneNode(true)
                 );
 
-            image.src =
-                clothing.image;
-
-            image.alt =
-                clothing.name;
-
-            image.className =
-                "clothing-photo";
+            }
 
 
-            const details =
-                document.createElement(
-                    "div"
+            if(item.category==="shoes"){
+
+                shoes.appendChild(
+                    option.cloneNode(true)
                 );
 
-            details.className =
-                "clothing-details";
-
-
-            const title =
-                document.createElement(
-                    "h4"
-                );
-
-            title.textContent =
-                clothing.name;
-
-
-            const category =
-                document.createElement(
-                    "p"
-                );
-
-            category.textContent =
-                clothing.category;
-
-
-            const deleteButton =
-                document.createElement(
-                    "button"
-                );
-
-            deleteButton.className =
-                "delete-clothing";
-
-            deleteButton.textContent =
-                "✕ Eliminar";
-
-
-            deleteButton.onclick =
-                function () {
-
-                    deleteClothing(
-                        clothing.id
-                    );
-
-                };
-
-
-            details.appendChild(title);
-
-            details.appendChild(category);
-
-            details.appendChild(deleteButton);
-
-
-            card.appendChild(image);
-
-            card.appendChild(details);
-
-
-            clothingGrid.appendChild(card);
+            }
 
         }
     );
@@ -1805,37 +1296,123 @@ updateOutfitSelectors();
 }
 
 
-/* ELIMINAR PRENDA */
+/* =================================
+   CREAR OUTFIT
+================================= */
 
-function deleteClothing(id) {
+function createOutfit(){
 
-    clothes =
-        clothes.filter(
-            function (clothing) {
+    const topId =
+        document.getElementById("top").value;
 
-                return clothing.id !== id;
+    const bottomId =
+        document.getElementById("bottom").value;
+
+    const shoesId =
+        document.getElementById("shoes").value;
+
+
+    const result =
+        document.getElementById("result");
+
+
+    if(
+        !topId &&
+        !bottomId &&
+        !shoesId
+    ){
+
+        result.innerHTML=
+            "Selecciona algunas prendas primero 💗";
+
+        return;
+
+    }
+
+
+    let selected=[];
+
+
+    [topId,bottomId,shoesId]
+        .forEach(
+            function(id){
+
+                if(id){
+
+                    const item =
+                        clothes.find(
+                            function(clothing){
+
+                                return String(
+                                    clothing.id
+                                )===String(id);
+
+                            }
+                        );
+
+
+                    if(item){
+
+                        selected.push(item);
+
+                    }
+
+                }
 
             }
         );
 
 
-    saveClothes();
+    result.innerHTML=`
 
-    showClothes();
+        <h3
+            style="
+            font-family:Georgia,serif;
+            margin-bottom:15px;
+            "
+        >
+            ✨ Tu outfit ✨
+        </h3>
+
+    `;
+
+
+    selected.forEach(
+        function(item){
+
+            result.innerHTML += `
+
+                <img
+                    src="${item.image}"
+                    alt="${item.name}"
+                >
+
+            `;
+
+        }
+    );
+
+
+    result.innerHTML += `
+
+        <p style="margin-top:15px;">
+
+            ${selected
+                .map(
+                    function(item){
+                        return item.name;
+                    }
+                )
+                .join(" · ")}
+
+        </p>
+
+    `;
 
 }
-function irAlArmario() {
-    const armario = document.getElementById("armario");
 
-    if (armario) {
-        armario.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-    }
-}
 </script>
+
 
 </body>
 </html>
-```
