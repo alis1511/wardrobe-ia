@@ -1,262 +1,686 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Wardrobe IA</title>
+<title>WardrobeAI ✨</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #fff8fb;
+    color: #171417;
+}
+
+/* NAVBAR */
+
+.navbar {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    background: rgba(255,255,255,0.9);
+    border-bottom: 1px solid #f2dfe7;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.logo span {
+    color: #e98bab;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    color: #df7399;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 70px 8%;
+    background:
+        radial-gradient(circle at 85% 20%, #ffdce8 0, transparent 25%),
+        radial-gradient(circle at 15% 80%, #ffeef5 0, transparent 30%);
+}
+
+.hero-text {
+    max-width: 570px;
+}
+
+.badge {
+    display: inline-block;
+    background: #ffe2ec;
+    color: #bd5679;
+    padding: 9px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6vw, 78px);
+    line-height: 1;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #df789b;
+}
+
+.hero p {
+    color: #665e62;
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.main-button {
+    border: none;
+    background: #171417;
+    color: white;
+    padding: 16px 28px;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.main-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0,0,0,.15);
+}
+
+/* HERO CARD */
+
+.hero-card {
+    width: 380px;
+    min-height: 420px;
+    background: white;
+    border-radius: 35px;
+    padding: 25px;
+    box-shadow: 0 25px 70px rgba(200,120,150,.18);
+    transform: rotate(2deg);
+}
+
+.fake-photo {
+    height: 300px;
+    border-radius: 25px;
+    background: linear-gradient(145deg,#f7d4df,#fff,#eec3d3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
+
+.card-info {
+    padding: 20px 5px;
+}
+
+.card-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+}
+
+.card-info p {
+    color: #777;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* SECTIONS */
+
+section {
+    padding: 90px 8%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 45px;
+}
+
+.section-title p {
+    color: #777;
+    margin-top: 10px;
+}
+
+/* FEATURES */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.feature {
+    background: white;
+    border: 1px solid #f1dfe6;
+    padding: 35px;
+    border-radius: 25px;
+    transition: .3s;
+}
+
+.feature:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 40px rgba(200,120,150,.12);
+}
+
+.feature-icon {
+    width: 55px;
+    height: 55px;
+    background: #ffe5ee;
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.feature h3 {
+    margin-bottom: 10px;
+}
+
+.feature p {
+    color: #777;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* WARDROBE */
+
+.wardrobe-section {
+    background: #171417;
+    color: white;
+}
+
+.wardrobe-section .section-title p {
+    color: #bdb7ba;
+}
+
+.upload-box {
+    max-width: 700px;
+    margin: auto;
+    background: #211e20;
+    border: 1px dashed #e99ab5;
+    border-radius: 30px;
+    padding: 45px;
+    text-align: center;
+}
+
+.upload-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.upload-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.upload-box p {
+    color: #bdb7ba;
+    margin-bottom: 25px;
+}
+
+.upload-button {
+    display: inline-block;
+    background: #f19abb;
+    color: #171417;
+    padding: 14px 25px;
+    border-radius: 13px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+#imageInput {
+    display: none;
+}
+
+#preview {
+    max-width: 220px;
+    max-height: 220px;
+    border-radius: 20px;
+    margin: 25px auto 0;
+    display: none;
+}
+
+/* OUTFITS */
+
+.outfit-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.outfit {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid #f1dfe6;
+}
+
+.outfit-image {
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    background: #fcebf1;
+}
+
+.outfit:nth-child(2) .outfit-image {
+    background: #f3edf4;
+}
+
+.outfit:nth-child(3) .outfit-image {
+    background: #eee8e2;
+}
+
+.outfit-info {
+    padding: 22px;
+}
+
+.outfit-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 23px;
+}
+
+.outfit-info p {
+    color: #777;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+/* CTA */
+
+.cta {
+    text-align: center;
+    background: #ffe5ee;
+}
+
+.cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    color: #695f64;
+    margin-bottom: 25px;
+}
+
+/* FOOTER */
+
+footer {
+    background: #171417;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+footer p {
+    color: #aaa;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        padding: 0 5%;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #0A0A0A;
-      color: white;
-      min-height: 100vh;
-    }
-
-    header {
-      height: 75px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 35px;
-      border-bottom: 1px solid #D4AF37;
-    }
-
-    .logo {
-      color: #D4AF37;
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-
-    .tagline {
-      color: #aaa;
-      font-size: 14px;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 50px 20px;
-    }
-
-    .welcome {
-      text-align: center;
-      margin-bottom: 35px;
-    }
-
-    .welcome h1 {
-      font-size: 42px;
-      color: #D4AF37;
-      margin-bottom: 12px;
-    }
-
-    .welcome p {
-      color: #ccc;
-      font-size: 17px;
-    }
-
-    .chat {
-      background: #111111;
-      border: 1px solid #333;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 0 30px rgba(212, 175, 55, 0.08);
-    }
-
-    .messages {
-      min-height: 400px;
-      max-height: 500px;
-      overflow-y: auto;
-      padding: 25px;
-    }
-
-    .message {
-      max-width: 75%;
-      padding: 14px 17px;
-      margin-bottom: 18px;
-      border-radius: 15px;
-      line-height: 1.5;
-    }
-
-    .ai {
-      background: #1c1c1c;
-      border-left: 3px solid #D4AF37;
-      margin-right: auto;
-    }
-
-    .user {
-      background: #D4AF37;
-      color: #080808;
-      margin-left: auto;
-    }
-
-    .input-area {
-      display: flex;
-      padding: 15px;
-      border-top: 1px solid #333;
-      gap: 10px;
-    }
-
-    input {
-      flex: 1;
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid #444;
-      background: #080808;
-      color: white;
-      outline: none;
-    }
-
-    input:focus {
-      border-color: #D4AF37;
-    }
-
-    button {
-      padding: 0 22px;
-      border: none;
-      border-radius: 10px;
-      background: #D4AF37;
-      color: #080808;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #f0ce55;
-    }
-
-    .info {
-      text-align: center;
-      margin-top: 20px;
-      color: #777;
-      font-size: 13px;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding: 0 15px;
-      }
-
-      .tagline {
+    .nav-links {
         display: none;
-      }
-
-      .welcome h1 {
-        font-size: 32px;
-      }
-
-      .message {
-        max-width: 90%;
-      }
     }
-  </style>
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 55px;
+    }
+
+    .hero-card {
+        width: 90%;
+        max-width: 380px;
+    }
+
+    .features,
+    .outfit-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 65px 6%;
+    }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">WARDROBE IA ✦</div>
-    <div class="tagline">Tu asistente personal de estilo</div>
-  </header>
+<header class="navbar">
+    <div class="logo">Wardrobe<span>AI</span> ✦</div>
 
-  <main>
+    <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#funciones">Funciones</a></li>
+        <li><a href="#armario">Mi armario</a></li>
+        <li><a href="#outfits">Outfits</a></li>
+    </ul>
+</header>
 
-    <section class="welcome">
-      <h1>Wardrobe IA</h1>
-      <p>Tu estilo. Tus prendas. Tu elección. ✨</p>
-    </section>
 
-    <section class="chat">
+<main>
 
-      <div class="messages" id="messages">
+<section class="hero" id="inicio">
 
-        <div class="message ai">
-          <strong>Wardrobe IA ✦</strong><br><br>
-          ¡Hola! 👋 Soy Wardrobe IA, tu asistente personal de estilo.
-          <br><br>
-          Cuéntame qué prendas tienes o dime para qué ocasión necesitas vestirte y te ayudaré a crear el outfit perfecto. 🖤✨
-        </div>
+    <div class="hero-text">
 
-      </div>
+        <span class="badge">✦ Tu estilo, organizado</span>
 
-      <div class="input-area">
+        <h1>
+            Tu armario.<br>
+            Tu <span>estilo.</span>
+        </h1>
 
-        <input
-          type="text"
-          id="userInput"
-          placeholder="Escribe tus prendas o tu ocasión..."
-          onkeydown="if(event.key === 'Enter') sendMessage()"
-        >
+        <p>
+            Organiza tus prendas, descubre nuevas combinaciones
+            y crea looks que representen tu personalidad.
+            Todo en un solo lugar.
+        </p>
 
-        <button onclick="sendMessage()">Enviar</button>
+        <button class="main-button"
+                onclick="document.getElementById('armario').scrollIntoView({behavior:'smooth'})">
+            Explorar mi armario →
+        </button>
 
-      </div>
-
-    </section>
-
-    <div class="info">
-      Wardrobe IA • Tu estilo, tus reglas ✦
     </div>
 
-  </main>
 
-  <script>
+    <div class="hero-card">
 
-    function sendMessage() {
+        <div class="fake-photo">
+            👗
+        </div>
 
-      const input = document.getElementById("userInput");
-      const messages = document.getElementById("messages");
+        <div class="card-info">
+            <h3>Today's look ♡</h3>
+            <p>Elegante · Casual · Girly</p>
+        </div>
 
-      const text = input.value.trim();
+    </div>
 
-      if (text === "") {
-        return;
-      }
+</section>
 
-      // Mensaje del usuario
 
-      const userMessage = document.createElement("div");
+<section id="funciones">
 
-      userMessage.className = "message user";
+    <div class="section-title">
 
-      userMessage.innerHTML = text;
+        <h2>Todo para tu estilo</h2>
 
-      messages.appendChild(userMessage);
+        <p>
+            Una forma más bonita y sencilla de organizar tu ropa.
+        </p>
 
-      input.value = "";
+    </div>
 
-      // Respuesta provisional de Wardrobe IA
 
-      setTimeout(() => {
+    <div class="features">
 
-        const aiMessage = document.createElement("div");
+        <div class="feature">
 
-        aiMessage.className = "message ai";
+            <div class="feature-icon">👗</div>
 
-        aiMessage.innerHTML =
-          "<strong>Wardrobe IA ✦</strong><br><br>" +
-          "¡Interesante! 👗 Para ayudarte mejor, dime: " +
-          "<br><br>¿Para qué ocasión vas a utilizar ese outfit? ✨";
+            <h3>Organiza tu ropa</h3>
 
-        messages.appendChild(aiMessage);
+            <p>
+                Guarda tus prendas y tenlas organizadas
+                para encontrarlas fácilmente.
+            </p>
 
-        messages.scrollTop = messages.scrollHeight;
+        </div>
 
-      }, 700);
 
-      messages.scrollTop = messages.scrollHeight;
+        <div class="feature">
 
+            <div class="feature-icon">✨</div>
+
+            <h3>Crea outfits</h3>
+
+            <p>
+                Combina tus prendas y descubre
+                diferentes estilos para cada ocasión.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">💗</div>
+
+            <h3>Descubre tu estilo</h3>
+
+            <p>
+                Explora combinaciones y encuentra
+                los looks que más van contigo.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="wardrobe-section" id="armario">
+
+    <div class="section-title">
+
+        <h2>Mi armario</h2>
+
+        <p>
+            Comienza agregando una prenda.
+        </p>
+
+    </div>
+
+
+    <div class="upload-box">
+
+        <div class="upload-icon">👜</div>
+
+        <h3>Agrega una prenda</h3>
+
+        <p>
+            Sube una foto de tu ropa para comenzar
+            a crear tu armario digital.
+        </p>
+
+
+        <label for="imageInput" class="upload-button">
+            + Subir fotografía
+        </label>
+
+        <input
+            type="file"
+            id="imageInput"
+            accept="image/*"
+        >
+
+        <img id="preview">
+
+    </div>
+
+</section>
+
+
+<section id="outfits">
+
+    <div class="section-title">
+
+        <h2>Ideas de outfits</h2>
+
+        <p>
+            Un poquito de inspiración para tu próximo look ♡
+        </p>
+
+    </div>
+
+
+    <div class="outfit-grid">
+
+        <div class="outfit">
+
+            <div class="outfit-image">
+                👚
+            </div>
+
+            <div class="outfit-info">
+                <h3>Soft Girl</h3>
+                <p>Suave · Femenino · Casual</p>
+            </div>
+
+        </div>
+
+
+        <div class="outfit">
+
+            <div class="outfit-image">
+                🧥
+            </div>
+
+            <div class="outfit-info">
+                <h3>Clean Girl</h3>
+                <p>Minimalista · Elegante · Chic</p>
+            </div>
+
+        </div>
+
+
+        <div class="outfit">
+
+            <div class="outfit-image">
+                👖
+            </div>
+
+            <div class="outfit-info">
+                <h3>Casual Chic</h3>
+                <p>Cómodo · Moderno · Versátil</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="cta">
+
+    <h2>Tu estilo comienza aquí ✨</h2>
+
+    <p>
+        Organiza, combina y disfruta de tu armario.
+    </p>
+
+    <button class="main-button"
+            onclick="document.getElementById('armario').scrollIntoView({behavior:'smooth'})">
+        Crear mi armario
+    </button>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <strong>WardrobeAI ✦</strong>
+
+    <p>
+        Diseñado para hacer de tu armario un lugar más bonito.
+    </p>
+
+</footer>
+
+
+<script>
+
+const imageInput = document.getElementById("imageInput");
+const preview = document.getElementById("preview");
+
+imageInput.addEventListener("change", function() {
+
+    const file = this.files[0];
+
+    if (file) {
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+
+            preview.src = e.target.result;
+            preview.style.display = "block";
+
+        };
+
+        reader.readAsDataURL(file);
     }
 
-  </script>
+});
+
+</script>
 
 </body>
 </html>
+```
