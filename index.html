@@ -1165,7 +1165,211 @@ function deleteClothing(id) {
 }
 
 </script>
+```html
+<script>
+
+let clothes = [];
+
+const clothingInput = document.getElementById("clothingInput");
+const clothingForm = document.getElementById("clothingForm");
+
+
+/* Cuando seleccionas una foto */
+
+clothingInput.addEventListener("change", function () {
+
+    if (this.files.length > 0) {
+
+        clothingForm.style.display = "flex";
+
+    }
+
+});
+
+
+/* Guardar una prenda */
+
+function addClothing() {
+
+    const file = clothingInput.files[0];
+
+    const name =
+        document.getElementById("clothingName").value.trim();
+
+    const category =
+        document.getElementById("clothingCategory").value;
+
+
+    if (!file) {
+
+        alert("Primero elige una fotografía 👗");
+
+        return;
+
+    }
+
+
+    if (name === "") {
+
+        alert("Ponle un nombre a tu prenda 💗");
+
+        return;
+
+    }
+
+
+    if (category === "") {
+
+        alert("Selecciona una categoría ✨");
+
+        return;
+
+    }
+
+
+    const reader = new FileReader();
+
+
+    reader.onload = function (event) {
+
+        const clothing = {
+
+            id: Date.now(),
+
+            image: event.target.result,
+
+            name: name,
+
+            category: category
+
+        };
+
+
+        clothes.push(clothing);
+
+        showClothes();
+
+
+        /* Limpiar formulario */
+
+        clothingInput.value = "";
+
+        document.getElementById("clothingName").value = "";
+
+        document.getElementById("clothingCategory").value = "";
+
+        clothingForm.style.display = "none";
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* Mostrar las prendas */
+
+function showClothes() {
+
+    const grid =
+        document.getElementById("clothingGrid");
+
+    const count =
+        document.getElementById("clothingCount");
+
+
+    count.textContent =
+        clothes.length +
+        (clothes.length === 1 ? " prenda" : " prendas");
+
+
+    if (clothes.length === 0) {
+
+        grid.innerHTML = `
+
+            <div class="empty-wardrobe">
+
+                <div>🛍️</div>
+
+                <p>
+                    Tu armario está esperando<br>
+                    sus primeras prendas.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML = "";
+
+
+    clothes.forEach(function (clothing) {
+
+        const card =
+            document.createElement("div");
+
+
+        card.className = "clothing-card";
+
+
+        card.innerHTML = `
+
+            <img
+                src="${clothing.image}"
+                class="clothing-photo"
+            >
+
+            <div class="clothing-details">
+
+                <h4>${clothing.name}</h4>
+
+                <p>${clothing.category}</p>
+
+                <button
+                    class="delete-clothing"
+                    onclick="deleteClothing(${clothing.id})"
+                >
+                    ✕ Eliminar
+                </button>
+
+            </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* Eliminar una prenda */
+
+function deleteClothing(id) {
+
+    clothes = clothes.filter(function (clothing) {
+
+        return clothing.id !== id;
+
+    });
+
+
+    showClothes();
+
+}
+
+</script>
 ```
+
+```
+
 
 
 </body>
