@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Wardrobe IA</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0A0A0A;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 35px;
+      border-bottom: 1px solid #D4AF37;
+    }
+
+    .logo {
+      color: #D4AF37;
+      font-size: 25px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .tagline {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    .welcome {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .welcome h1 {
+      font-size: 42px;
+      color: #D4AF37;
+      margin-bottom: 12px;
+    }
+
+    .welcome p {
+      color: #ccc;
+      font-size: 17px;
+    }
+
+    .chat {
+      background: #111111;
+      border: 1px solid #333;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.08);
+    }
+
+    .messages {
+      min-height: 400px;
+      max-height: 500px;
+      overflow-y: auto;
+      padding: 25px;
+    }
+
+    .message {
+      max-width: 75%;
+      padding: 14px 17px;
+      margin-bottom: 18px;
+      border-radius: 15px;
+      line-height: 1.5;
+    }
+
+    .ai {
+      background: #1c1c1c;
+      border-left: 3px solid #D4AF37;
+      margin-right: auto;
+    }
+
+    .user {
+      background: #D4AF37;
+      color: #080808;
+      margin-left: auto;
+    }
+
+    .input-area {
+      display: flex;
+      padding: 15px;
+      border-top: 1px solid #333;
+      gap: 10px;
+    }
+
+    input {
+      flex: 1;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #444;
+      background: #080808;
+      color: white;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #D4AF37;
+    }
+
+    button {
+      padding: 0 22px;
+      border: none;
+      border-radius: 10px;
+      background: #D4AF37;
+      color: #080808;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #f0ce55;
+    }
+
+    .info {
+      text-align: center;
+      margin-top: 20px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 0 15px;
+      }
+
+      .tagline {
+        display: none;
+      }
+
+      .welcome h1 {
+        font-size: 32px;
+      }
+
+      .message {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">WARDROBE IA ✦</div>
+    <div class="tagline">Tu asistente personal de estilo</div>
+  </header>
+
+  <main>
+
+    <section class="welcome">
+      <h1>Wardrobe IA</h1>
+      <p>Tu estilo. Tus prendas. Tu elección. ✨</p>
+    </section>
+
+    <section class="chat">
+
+      <div class="messages" id="messages">
+
+        <div class="message ai">
+          <strong>Wardrobe IA ✦</strong><br><br>
+          ¡Hola! 👋 Soy Wardrobe IA, tu asistente personal de estilo.
+          <br><br>
+          Cuéntame qué prendas tienes o dime para qué ocasión necesitas vestirte y te ayudaré a crear el outfit perfecto. 🖤✨
+        </div>
+
+      </div>
+
+      <div class="input-area">
+
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Escribe tus prendas o tu ocasión..."
+          onkeydown="if(event.key === 'Enter') sendMessage()"
+        >
+
+        <button onclick="sendMessage()">Enviar</button>
+
+      </div>
+
+    </section>
+
+    <div class="info">
+      Wardrobe IA • Tu estilo, tus reglas ✦
+    </div>
+
+  </main>
+
+  <script>
+
+    function sendMessage() {
+
+      const input = document.getElementById("userInput");
+      const messages = document.getElementById("messages");
+
+      const text = input.value.trim();
+
+      if (text === "") {
+        return;
+      }
+
+      // Mensaje del usuario
+
+      const userMessage = document.createElement("div");
+
+      userMessage.className = "message user";
+
+      userMessage.innerHTML = text;
+
+      messages.appendChild(userMessage);
+
+      input.value = "";
+
+      // Respuesta provisional de Wardrobe IA
+
+      setTimeout(() => {
+
+        const aiMessage = document.createElement("div");
+
+        aiMessage.className = "message ai";
+
+        aiMessage.innerHTML =
+          "<strong>Wardrobe IA ✦</strong><br><br>" +
+          "¡Interesante! 👗 Para ayudarte mejor, dime: " +
+          "<br><br>¿Para qué ocasión vas a utilizar ese outfit? ✨";
+
+        messages.appendChild(aiMessage);
+
+        messages.scrollTop = messages.scrollHeight;
+
+      }, 700);
+
+      messages.scrollTop = messages.scrollHeight;
+
+    }
+
+  </script>
+
+</body>
+</html>
