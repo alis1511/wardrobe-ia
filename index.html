@@ -631,9 +631,9 @@ footer p {
             tu personalidad.
         </p>
 
-        <a href="#armario" class="main-button">
-            Explorar mi armario →
-        </a>
+      <button class="main-button" onclick="irAlArmario()">
+    Explorar mi armario →
+</button>
 
     </div>
 
@@ -1377,7 +1377,16 @@ function deleteClothing(id) {
     showClothes();
 
 }
+function irAlArmario() {
+    const armario = document.getElementById("armario");
 
+    if (armario) {
+        armario.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+}
 </script>
 
 </body>
