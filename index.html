@@ -288,6 +288,174 @@ section {
     margin: 25px auto 0;
     display: none;
 }
+```css
+#clothingInput {
+    display: none;
+}
+
+.wardrobe-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.add-clothing {
+    background: #211e20;
+    border: 1px dashed #e99ab5;
+    border-radius: 30px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.clothing-form {
+    max-width: 450px;
+    margin: 25px auto 0;
+    display: none;
+    gap: 12px;
+    flex-direction: column;
+}
+
+.clothing-form input,
+.clothing-form select {
+    width: 100%;
+    padding: 15px;
+    border-radius: 13px;
+    border: 1px solid #4a4447;
+    background: #2b2729;
+    color: white;
+    font-family: inherit;
+    outline: none;
+}
+
+.clothing-form input:focus,
+.clothing-form select:focus {
+    border-color: #f19abb;
+}
+
+.save-clothing {
+    border: none;
+    background: #f19abb;
+    color: #171417;
+    padding: 15px;
+    border-radius: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.save-clothing:hover {
+    transform: translateY(-2px);
+}
+
+.my-clothes {
+    background: #211e20;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+.clothes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.clothes-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+}
+
+#clothingCount {
+    color: #e99ab5;
+    font-size: 13px;
+}
+
+.clothing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.clothing-card {
+    background: #2b2729;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid #393436;
+    animation: appear .35s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.clothing-photo {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.clothing-details {
+    padding: 17px;
+}
+
+.clothing-details h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+.clothing-details p {
+    color: #c1bbbe;
+    font-size: 12px;
+}
+
+.delete-clothing {
+    margin-top: 14px;
+    border: none;
+    background: transparent;
+    color: #e99ab5;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.empty-wardrobe {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    color: #aaa;
+}
+
+.empty-wardrobe div {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.empty-wardrobe p {
+    line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+
+    .clothing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .add-clothing,
+    .my-clothes {
+        padding: 25px;
+    }
+
+}
+```
 
 /* OUTFITS */
 
@@ -521,8 +689,129 @@ footer p {
 
 </section>
 
+    <div class="section-title">
 
-<section class="wardrobe-section" id="armario">
+        <h2>Mi armario ♡</h2>
+
+        <p>
+            Agrega tus prendas y crea tu propio armario digital.
+        </p>
+
+    </div>
+
+
+    <div class="wardrobe-container">
+
+        <div class="add-clothing">
+
+            <div class="upload-icon">👗</div>
+
+            <h3>Agregar nueva prenda</h3>
+
+            <p>
+                Sube una fotografía de tu ropa y personalízala.
+            </p>
+
+
+            <label for="clothingInput" class="upload-button">
+                + Elegir fotografía
+            </label>
+
+            <input
+                type="file"
+                id="clothingInput"
+                accept="image/*"
+            >
+
+
+            <div id="clothingForm" class="clothing-form">
+
+                <input
+                    type="text"
+                    id="clothingName"
+                    placeholder="Nombre de la prenda"
+                >
+
+
+                <select id="clothingCategory">
+
+                    <option value="">
+                        Selecciona una categoría
+                    </option>
+
+                    <option value="👚 Tops">
+                        👚 Tops
+                    </option>
+
+                    <option value="👖 Pantalones">
+                        👖 Pantalones
+                    </option>
+
+                    <option value="👗 Vestidos">
+                        👗 Vestidos
+                    </option>
+
+                    <option value="🧥 Chaquetas">
+                        🧥 Chaquetas
+                    </option>
+
+                    <option value="👟 Zapatos">
+                        👟 Zapatos
+                    </option>
+
+                    <option value="👜 Accesorios">
+                        👜 Accesorios
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="save-clothing"
+                    onclick="addClothing()"
+                >
+                    Guardar prenda ♡
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="my-clothes">
+
+            <div class="clothes-header">
+
+                <h3>Mis prendas</h3>
+
+                <span id="clothingCount">
+                    0 prendas
+                </span>
+
+            </div>
+
+
+            <div id="clothingGrid" class="clothing-grid">
+
+                <div class="empty-wardrobe">
+
+                    <div>🛍️</div>
+
+                    <p>
+                        Tu armario está esperando<br>
+                        sus primeras prendas.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+```
 
     <div class="section-title">
 
@@ -679,7 +968,205 @@ imageInput.addEventListener("change", function() {
 
 });
 
+```html
+<script>
+
+let clothes = [];
+
+const clothingInput =
+    document.getElementById("clothingInput");
+
+const clothingForm =
+    document.getElementById("clothingForm");
+
+clothingInput.addEventListener("change", function() {
+
+    if (this.files.length > 0) {
+
+        clothingForm.style.display = "flex";
+
+    }
+
+});
+
+
+function addClothing() {
+
+    const file = clothingInput.files[0];
+
+    const name =
+        document.getElementById("clothingName").value.trim();
+
+    const category =
+        document.getElementById("clothingCategory").value;
+
+
+    if (!file) {
+
+        alert("Primero elige una fotografía 👗");
+
+        return;
+
+    }
+
+
+    if (!name) {
+
+        alert("Ponle un nombre a tu prenda 💗");
+
+        return;
+
+    }
+
+
+    if (!category) {
+
+        alert("Selecciona una categoría ✨");
+
+        return;
+
+    }
+
+
+    const reader = new FileReader();
+
+
+    reader.onload = function(e) {
+
+        const clothing = {
+
+            id: Date.now(),
+
+            image: e.target.result,
+
+            name: name,
+
+            category: category
+
+        };
+
+
+        clothes.push(clothing);
+
+        renderClothes();
+
+
+        clothingInput.value = "";
+
+        document.getElementById("clothingName").value = "";
+
+        document.getElementById("clothingCategory").value = "";
+
+        clothingForm.style.display = "none";
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+}
+
+
+function renderClothes() {
+
+    const grid =
+        document.getElementById("clothingGrid");
+
+    const count =
+        document.getElementById("clothingCount");
+
+
+    count.textContent =
+        clothes.length +
+        (clothes.length === 1 ? " prenda" : " prendas");
+
+
+    if (clothes.length === 0) {
+
+        grid.innerHTML = `
+
+            <div class="empty-wardrobe">
+
+                <div>🛍️</div>
+
+                <p>
+                    Tu armario está esperando<br>
+                    sus primeras prendas.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML = "";
+
+
+    clothes.forEach(function(clothing) {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "clothing-card";
+
+
+        card.innerHTML = `
+
+            <img
+                src="${clothing.image}"
+                class="clothing-photo"
+            >
+
+            <div class="clothing-details">
+
+                <h4>
+                    ${clothing.name}
+                </h4>
+
+                <p>
+                    ${clothing.category}
+                </p>
+
+                <button
+                    class="delete-clothing"
+                    onclick="deleteClothing(${clothing.id})"
+                >
+                    ✕ Eliminar
+                </button>
+
+            </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+function deleteClothing(id) {
+
+    clothes =
+        clothes.filter(function(clothing) {
+
+            return clothing.id !== id;
+
+        });
+
+
+    renderClothes();
+
+}
+
 </script>
+```
+
 
 </body>
 </html>
