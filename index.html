@@ -1,1091 +1,583 @@
 ```html
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>WardrobeAI ✦</title>
 
-
 <style>
-
-/* ================================
-   FUENTES
-================================ */
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
-
-/* ================================
-   GENERAL
-================================ */
-
 * {
-
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
-
 
 html {
-
     scroll-behavior: smooth;
-
 }
-
 
 body {
-
     font-family: 'DM Sans', sans-serif;
-
     background: #fff8fb;
-
     color: #171417;
-
 }
-
 
 button,
 input,
 select {
-
     font-family: inherit;
-
 }
 
-
-/* ================================
-   NAVBAR
-================================ */
+/* NAVBAR */
 
 .navbar {
-
     height: 75px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     padding: 0 7%;
-
-    background: rgba(255,255,255,.92);
-
+    background: rgba(255,255,255,.94);
     border-bottom: 1px solid #f2dfe7;
-
     position: sticky;
-
     top: 0;
-
     z-index: 100;
-
     backdrop-filter: blur(12px);
-
 }
-
 
 .logo {
-
     font-family: 'Playfair Display', serif;
-
     font-size: 28px;
-
     font-weight: 700;
-
 }
-
 
 .logo span {
-
     color: #e98bab;
-
 }
-
 
 .nav-links {
-
     display: flex;
-
     gap: 30px;
-
     list-style: none;
-
 }
-
 
 .nav-links a {
-
     text-decoration: none;
-
     color: #333;
-
     font-size: 14px;
-
     font-weight: 600;
-
     transition: .2s;
-
 }
-
 
 .nav-links a:hover {
-
     color: #df7399;
-
 }
 
-
-/* ================================
-   HERO
-================================ */
+/* HERO */
 
 .hero {
-
     min-height: 620px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     gap: 50px;
-
     padding: 75px 8%;
-
     background:
-
-    radial-gradient(
-        circle at 85% 20%,
-        #ffdce8 0,
-        transparent 25%
-    ),
-
-    radial-gradient(
-        circle at 15% 80%,
-        #ffeef5 0,
-        transparent 30%
-    );
-
+        radial-gradient(circle at 85% 20%, #ffdce8 0, transparent 25%),
+        radial-gradient(circle at 15% 80%, #ffeef5 0, transparent 30%);
 }
-
 
 .hero-text {
-
     max-width: 570px;
-
 }
-
 
 .badge {
-
     display: inline-block;
-
     background: #ffe2ec;
-
     color: #bd5679;
-
     padding: 9px 16px;
-
     border-radius: 30px;
-
     font-size: 13px;
-
     font-weight: 700;
-
     margin-bottom: 22px;
-
 }
-
 
 .hero h1 {
-
     font-family: 'Playfair Display', serif;
-
     font-size: clamp(48px, 6vw, 78px);
-
     line-height: 1;
-
     margin-bottom: 25px;
-
 }
-
 
 .hero h1 span {
-
     color: #df789b;
-
 }
-
 
 .hero p {
-
     color: #665e62;
-
     font-size: 17px;
-
     line-height: 1.7;
-
     margin-bottom: 32px;
-
 }
 
+/* BOTONES */
 
 .main-button {
-
+    display: inline-block;
+    text-decoration: none;
     border: none;
-
     background: #171417;
-
     color: white;
-
     padding: 16px 28px;
-
     border-radius: 15px;
-
     font-size: 15px;
-
     font-weight: 700;
-
     cursor: pointer;
-
     transition: .25s;
-
 }
-
 
 .main-button:hover {
-
     transform: translateY(-3px);
-
-    box-shadow:
-    0 12px 25px rgba(0,0,0,.15);
-
+    box-shadow: 0 12px 25px rgba(0,0,0,.15);
 }
 
-
-/* ================================
-   HERO CARD
-================================ */
+/* HERO CARD */
 
 .hero-card {
-
     width: 380px;
-
     min-height: 420px;
-
     background: white;
-
     border-radius: 35px;
-
     padding: 25px;
-
-    box-shadow:
-    0 25px 70px rgba(200,120,150,.18);
-
+    box-shadow: 0 25px 70px rgba(200,120,150,.18);
     transform: rotate(2deg);
-
 }
-
 
 .fake-photo {
-
     height: 300px;
-
     border-radius: 25px;
-
-    background:
-    linear-gradient(
-        145deg,
-        #f7d4df,
-        #fff,
-        #eec3d3
-    );
-
+    background: linear-gradient(145deg,#f7d4df,#fff,#eec3d3);
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     font-size: 100px;
-
 }
-
 
 .card-info {
-
     padding: 20px 5px;
-
 }
-
 
 .card-info h3 {
-
-    font-family:
-    'Playfair Display', serif;
-
+    font-family: 'Playfair Display', serif;
     font-size: 24px;
-
 }
-
 
 .card-info p {
-
     color: #777;
-
     font-size: 13px;
-
     margin-top: 5px;
-
 }
 
-
-/* ================================
-   SECCIONES
-================================ */
+/* SECCIONES */
 
 section {
-
     padding: 90px 8%;
-
 }
-
 
 .section-title {
-
     text-align: center;
-
     margin-bottom: 50px;
-
 }
-
 
 .section-title h2 {
-
-    font-family:
-    'Playfair Display', serif;
-
+    font-family: 'Playfair Display', serif;
     font-size: 45px;
-
 }
-
 
 .section-title p {
-
     color: #777;
-
     margin-top: 10px;
-
 }
 
-
-/* ================================
-   FUNCIONES
-================================ */
+/* FUNCIONES */
 
 .features {
-
     display: grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns: repeat(3,1fr);
     gap: 25px;
-
 }
-
 
 .feature {
-
     background: white;
-
     border: 1px solid #f1dfe6;
-
     padding: 35px;
-
     border-radius: 25px;
-
     transition: .3s;
-
 }
-
 
 .feature:hover {
-
     transform: translateY(-7px);
-
-    box-shadow:
-    0 15px 40px rgba(200,120,150,.12);
-
+    box-shadow: 0 15px 40px rgba(200,120,150,.12);
 }
-
 
 .feature-icon {
-
     width: 55px;
-
     height: 55px;
-
     background: #ffe5ee;
-
     border-radius: 17px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-size: 25px;
-
     margin-bottom: 20px;
-
 }
-
 
 .feature h3 {
-
     margin-bottom: 10px;
-
 }
-
 
 .feature p {
-
     color: #777;
-
     line-height: 1.6;
-
     font-size: 14px;
-
 }
 
-
-/* ================================
-   ARMARIO
-================================ */
+/* ARMARIO */
 
 .wardrobe-section {
-
     background: #171417;
-
     color: white;
-
 }
 
-
-.wardrobe-section
-.section-title p {
-
+.wardrobe-section .section-title p {
     color: #bdb7ba;
-
 }
-
 
 .wardrobe-container {
-
     max-width: 1100px;
-
     margin: auto;
-
 }
 
-
-/* ================================
-   AGREGAR PRENDA
-================================ */
+/* AGREGAR PRENDA */
 
 .add-clothing {
-
     background: #211e20;
-
     border: 1px dashed #e99ab5;
-
     border-radius: 30px;
-
     padding: 40px;
-
     text-align: center;
-
     margin-bottom: 45px;
-
 }
-
 
 .upload-icon {
-
     font-size: 50px;
-
     margin-bottom: 15px;
-
 }
-
 
 .add-clothing h3 {
-
-    font-family:
-    'Playfair Display', serif;
-
+    font-family: 'Playfair Display', serif;
     font-size: 28px;
-
     margin-bottom: 10px;
-
 }
-
 
 .add-clothing p {
-
     color: #bdb7ba;
-
     margin-bottom: 25px;
-
 }
-
 
 .upload-button {
-
     display: inline-block;
-
     background: #f19abb;
-
     color: #171417;
-
     padding: 14px 25px;
-
     border-radius: 13px;
-
     cursor: pointer;
-
     font-weight: 700;
-
     transition: .2s;
-
 }
-
 
 .upload-button:hover {
-
     transform: translateY(-2px);
-
 }
-
 
 #clothingInput {
-
     display: none;
-
 }
 
-
-/* ================================
-   FORMULARIO
-================================ */
+/* FORMULARIO */
 
 .clothing-form {
-
     max-width: 450px;
-
     margin: 25px auto 0;
-
     display: none;
-
     gap: 12px;
-
     flex-direction: column;
-
 }
-
 
 .clothing-form input,
 .clothing-form select {
-
     width: 100%;
-
     padding: 15px;
-
     border-radius: 13px;
-
     border: 1px solid #4a4447;
-
     background: #2b2729;
-
     color: white;
-
     outline: none;
-
 }
-
 
 .clothing-form input:focus,
 .clothing-form select:focus {
-
     border-color: #f19abb;
-
 }
-
 
 .save-clothing {
-
     border: none;
-
     background: #f19abb;
-
     color: #171417;
-
     padding: 15px;
-
     border-radius: 13px;
-
     font-weight: 700;
-
     cursor: pointer;
-
     transition: .2s;
-
 }
-
 
 .save-clothing:hover {
-
     transform: translateY(-2px);
-
 }
 
-
-/* ================================
-   MIS PRENDAS
-================================ */
+/* MIS PRENDAS */
 
 .my-clothes {
-
     background: #211e20;
-
     border-radius: 30px;
-
     padding: 30px;
-
 }
-
 
 .clothes-header {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     margin-bottom: 25px;
-
 }
-
 
 .clothes-header h3 {
-
-    font-family:
-    'Playfair Display', serif;
-
+    font-family: 'Playfair Display', serif;
     font-size: 28px;
-
 }
-
 
 #clothingCount {
-
     color: #e99ab5;
-
     font-size: 13px;
-
 }
-
 
 .clothing-grid {
-
     display: grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns: repeat(3,1fr);
     gap: 20px;
-
 }
-
-
-/* ================================
-   TARJETA PRENDA
-================================ */
 
 .clothing-card {
-
     background: #2b2729;
-
     border-radius: 22px;
-
     overflow: hidden;
-
     border: 1px solid #393436;
-
     animation: appear .35s ease;
-
 }
 
-
 @keyframes appear {
-
     from {
-
         opacity: 0;
-
-        transform:
-        translateY(10px);
-
+        transform: translateY(10px);
     }
 
     to {
-
         opacity: 1;
-
-        transform:
-        translateY(0);
-
+        transform: translateY(0);
     }
-
 }
-
 
 .clothing-photo {
-
     width: 100%;
-
     height: 220px;
-
     object-fit: cover;
-
     display: block;
-
 }
-
 
 .clothing-details {
-
     padding: 17px;
-
 }
-
 
 .clothing-details h4 {
-
-    font-family:
-    'Playfair Display', serif;
-
+    font-family: 'Playfair Display', serif;
     font-size: 20px;
-
     margin-bottom: 7px;
-
 }
-
 
 .clothing-details p {
-
     color: #c1bbbe;
-
     font-size: 12px;
-
 }
-
 
 .delete-clothing {
-
     margin-top: 14px;
-
     border: none;
-
     background: transparent;
-
     color: #e99ab5;
-
     cursor: pointer;
-
     font-size: 12px;
-
 }
-
 
 .empty-wardrobe {
-
     grid-column: 1 / -1;
-
     text-align: center;
-
     padding: 50px;
-
     color: #aaa;
-
 }
-
 
 .empty-wardrobe div {
-
     font-size: 50px;
-
     margin-bottom: 15px;
-
 }
-
 
 .empty-wardrobe p {
-
     line-height: 1.6;
-
 }
 
-
-/* ================================
-   OUTFITS
-================================ */
+/* OUTFITS */
 
 .outfit-grid {
-
     display: grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns: repeat(3,1fr);
     gap: 25px;
-
 }
-
 
 .outfit {
-
     background: white;
-
     border-radius: 25px;
-
     overflow: hidden;
-
     border: 1px solid #f1dfe6;
-
 }
 
-
 .outfit-image {
-
     height: 280px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-size: 80px;
-
     background: #fcebf1;
-
 }
 
-
-.outfit:nth-child(2)
-.outfit-image {
-
+.outfit:nth-child(2) .outfit-image {
     background: #f3edf4;
-
 }
 
-
-.outfit:nth-child(3)
-.outfit-image {
-
+.outfit:nth-child(3) .outfit-image {
     background: #eee8e2;
-
 }
-
 
 .outfit-info {
-
     padding: 22px;
-
 }
-
 
 .outfit-info h3 {
-
-    font-family:
-    'Playfair Display', serif;
-
+    font-family: 'Playfair Display', serif;
     font-size: 23px;
-
 }
-
 
 .outfit-info p {
-
     color: #777;
-
     font-size: 13px;
-
     margin-top: 7px;
-
 }
 
-
-/* ================================
-   CTA
-================================ */
+/* CTA */
 
 .cta {
-
     text-align: center;
-
     background: #ffe5ee;
-
 }
-
 
 .cta h2 {
-
-    font-family:
-    'Playfair Display', serif;
-
+    font-family: 'Playfair Display', serif;
     font-size: 45px;
-
     margin-bottom: 15px;
-
 }
-
 
 .cta p {
-
     color: #695f64;
-
     margin-bottom: 25px;
-
 }
 
-
-/* ================================
-   FOOTER
-================================ */
+/* FOOTER */
 
 footer {
-
     background: #171417;
-
     color: white;
-
     text-align: center;
-
     padding: 35px 20px;
-
 }
-
 
 footer p {
-
     color: #aaa;
-
     font-size: 13px;
-
     margin-top: 7px;
-
 }
 
-
-/* ================================
-   MOVIL
-================================ */
+/* MÓVIL */
 
 @media (max-width: 800px) {
 
     .navbar {
-
         padding: 0 5%;
-
     }
-
 
     .nav-links {
-
         display: none;
-
     }
-
 
     .hero {
-
         flex-direction: column;
-
         text-align: center;
-
         padding-top: 55px;
-
     }
-
 
     .hero-card {
-
         width: 90%;
-
         max-width: 380px;
-
     }
-
 
     .features,
     .outfit-grid,
     .clothing-grid {
-
         grid-template-columns: 1fr;
-
     }
-
 
     section {
-
         padding: 65px 6%;
-
     }
-
 
     .add-clothing,
     .my-clothes {
-
         padding: 25px;
-
     }
-
 }
 
 </style>
-
 </head>
 
 
 <body>
 
-
-<!-- ================================
-     NAVBAR
-================================ -->
+<!-- NAVBAR -->
 
 <header class="navbar">
 
     <div class="logo">
-
         Wardrobe<span>AI</span> ✦
-
     </div>
-
 
     <ul class="nav-links">
 
@@ -1118,12 +610,9 @@ footer p {
 </header>
 
 
-<!-- ================================
-     INICIO
-================================ -->
+<!-- INICIO -->
 
 <section class="hero" id="inicio">
-
 
     <div class="hero-text">
 
@@ -1131,32 +620,20 @@ footer p {
             ✦ Tu estilo, organizado
         </span>
 
-
         <h1>
-
             Tu armario.<br>
-
             Tu <span>estilo.</span>
-
         </h1>
 
-
         <p>
-
             Organiza tus prendas, descubre nuevas
             combinaciones y crea looks que representen
             tu personalidad.
-
         </p>
 
-
-        <button
-            class="main-button"
-            onclick="goToWardrobe()">
-
+        <a href="#armario" class="main-button">
             Explorar mi armario →
-
-        </button>
+        </a>
 
     </div>
 
@@ -1164,11 +641,8 @@ footer p {
     <div class="hero-card">
 
         <div class="fake-photo">
-
             👗
-
         </div>
-
 
         <div class="card-info">
 
@@ -1184,16 +658,12 @@ footer p {
 
     </div>
 
-
 </section>
 
 
-<!-- ================================
-     FUNCIONES
-================================ -->
+<!-- FUNCIONES -->
 
 <section id="funciones">
-
 
     <div class="section-title">
 
@@ -1211,7 +681,6 @@ footer p {
 
     <div class="features">
 
-
         <div class="feature">
 
             <div class="feature-icon">
@@ -1223,11 +692,9 @@ footer p {
             </h3>
 
             <p>
-
                 Guarda tus prendas y tenlas
                 organizadas para encontrarlas
                 fácilmente.
-
             </p>
 
         </div>
@@ -1244,10 +711,8 @@ footer p {
             </h3>
 
             <p>
-
                 Combina tus prendas y descubre
                 diferentes estilos para cada ocasión.
-
             </p>
 
         </div>
@@ -1264,28 +729,20 @@ footer p {
             </h3>
 
             <p>
-
                 Explora combinaciones y encuentra
                 los looks que más van contigo.
-
             </p>
 
         </div>
-
 
     </div>
 
 </section>
 
 
-<!-- ================================
-     ARMARIO
-================================ -->
+<!-- ARMARIO -->
 
-<section
-    class="wardrobe-section"
-    id="armario">
-
+<section class="wardrobe-section" id="armario">
 
     <div class="section-title">
 
@@ -1294,10 +751,8 @@ footer p {
         </h2>
 
         <p>
-
             Agrega tus prendas y crea
             tu propio armario digital.
-
         </p>
 
     </div>
@@ -1310,22 +765,17 @@ footer p {
 
         <div class="add-clothing">
 
-
             <div class="upload-icon">
                 👗
             </div>
-
 
             <h3>
                 Agregar nueva prenda
             </h3>
 
-
             <p>
-
                 Sube una fotografía de tu ropa
                 y personalízala.
-
             </p>
 
 
@@ -1344,8 +794,6 @@ footer p {
                 accept="image/*"
             >
 
-
-            <!-- FORMULARIO -->
 
             <div
                 id="clothingForm"
@@ -1393,6 +841,7 @@ footer p {
 
 
                 <button
+                    type="button"
                     class="save-clothing"
                     onclick="addClothing()">
 
@@ -1400,9 +849,7 @@ footer p {
 
                 </button>
 
-
             </div>
-
 
         </div>
 
@@ -1411,18 +858,14 @@ footer p {
 
         <div class="my-clothes">
 
-
             <div class="clothes-header">
 
                 <h3>
                     Mis prendas
                 </h3>
 
-
                 <span id="clothingCount">
-
                     0 prendas
-
                 </span>
 
             </div>
@@ -1440,11 +883,8 @@ footer p {
                     </div>
 
                     <p>
-
                         Tu armario está esperando<br>
-
                         sus primeras prendas.
-
                     </p>
 
                 </div>
@@ -1452,22 +892,16 @@ footer p {
 
             </div>
 
-
         </div>
 
-
     </div>
-
 
 </section>
 
 
-<!-- ================================
-     OUTFITS
-================================ -->
+<!-- OUTFITS -->
 
 <section id="outfits">
-
 
     <div class="section-title">
 
@@ -1476,17 +910,14 @@ footer p {
         </h2>
 
         <p>
-
             Un poquito de inspiración
             para tu próximo look ♡
-
         </p>
 
     </div>
 
 
     <div class="outfit-grid">
-
 
         <div class="outfit">
 
@@ -1550,48 +981,32 @@ footer p {
 
         </div>
 
-
     </div>
-
 
 </section>
 
 
-<!-- ================================
-     CTA
-================================ -->
+<!-- CTA -->
 
 <section class="cta">
-
 
     <h2>
         Tu estilo comienza aquí ✨
     </h2>
 
-
     <p>
-
         Organiza, combina y disfruta
         de tu armario.
-
     </p>
 
-
-    <button
-        class="main-button"
-        onclick="goToWardrobe()">
-
+    <a href="#armario" class="main-button">
         Crear mi armario
-
-    </button>
-
+    </a>
 
 </section>
 
 
-<!-- ================================
-     FOOTER
-================================ -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -1599,94 +1014,69 @@ footer p {
         WardrobeAI ✦
     </strong>
 
-
     <p>
-
         Diseñado para hacer de tu armario
         un lugar más bonito.
-
     </p>
 
 </footer>
 
 
-<!-- ================================
-     JAVASCRIPT
-================================ -->
+<!-- JAVASCRIPT -->
 
 <script>
-
-
-/* ==================================
-   VARIABLES
-================================== */
 
 let clothes = [];
 
 
-/* ==================================
-   ELEMENTOS
-================================== */
+/* ELEMENTOS */
 
 const clothingInput =
-    document.getElementById(
-        "clothingInput"
-    );
-
+    document.getElementById("clothingInput");
 
 const clothingForm =
-    document.getElementById(
-        "clothingForm"
-    );
-
+    document.getElementById("clothingForm");
 
 const clothingName =
-    document.getElementById(
-        "clothingName"
-    );
-
+    document.getElementById("clothingName");
 
 const clothingCategory =
-    document.getElementById(
-        "clothingCategory"
-    );
-
+    document.getElementById("clothingCategory");
 
 const clothingGrid =
-    document.getElementById(
-        "clothingGrid"
-    );
-
+    document.getElementById("clothingGrid");
 
 const clothingCount =
-    document.getElementById(
-        "clothingCount"
+    document.getElementById("clothingCount");
+
+
+/* CARGAR PRENDAS GUARDADAS */
+
+try {
+
+    const saved =
+        localStorage.getItem(
+            "wardrobeAI_clothes"
+        );
+
+    if (saved) {
+
+        clothes = JSON.parse(saved);
+
+        showClothes();
+
+    }
+
+} catch (error) {
+
+    console.log(
+        "No se pudieron cargar las prendas."
     );
-
-
-/* ==================================
-   CARGAR PRENDAS GUARDADAS
-================================== */
-
-const savedClothes =
-    localStorage.getItem(
-        "wardrobeAI_clothes"
-    );
-
-
-if (savedClothes) {
-
-    clothes =
-        JSON.parse(savedClothes);
-
-    showClothes();
 
 }
 
 
-/* ==================================
-   SELECCIONAR FOTO
-================================== */
+/* CUANDO SE ELIGE UNA FOTO */
 
 clothingInput.addEventListener(
     "change",
@@ -1703,44 +1093,18 @@ clothingInput.addEventListener(
 );
 
 
-/* ==================================
-   IR AL ARMARIO
-================================== */
-
-function goToWardrobe() {
-
-    document
-        .getElementById("armario")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-
-}
-
-
-/* ==================================
-   GUARDAR PRENDA
-================================== */
+/* GUARDAR PRENDA */
 
 function addClothing() {
-
 
     const file =
         clothingInput.files[0];
 
-
     const name =
-        clothingName
-        .value
-        .trim();
-
+        clothingName.value.trim();
 
     const category =
-        clothingCategory
-        .value;
-
-
-    /* COMPROBACIONES */
+        clothingCategory.value;
 
 
     if (!file) {
@@ -1780,16 +1144,12 @@ function addClothing() {
     }
 
 
-    /* LEER IMAGEN */
-
-
     const reader =
         new FileReader();
 
 
     reader.onload =
         function (event) {
-
 
             const clothing = {
 
@@ -1807,45 +1167,24 @@ function addClothing() {
             };
 
 
-            /* AGREGAR */
-
-            clothes.push(
-                clothing
-            );
+            clothes.push(clothing);
 
 
-            /* GUARDAR EN EL NAVEGADOR */
+            saveClothes();
 
-            localStorage.setItem(
-                "wardrobeAI_clothes",
-                JSON.stringify(clothes)
-            );
-
-
-            /* ACTUALIZAR */
 
             showClothes();
 
 
-            /* LIMPIAR */
+            clothingInput.value = "";
 
-            clothingInput.value =
-                "";
+            clothingName.value = "";
 
-
-            clothingName.value =
-                "";
-
-
-            clothingCategory.value =
-                "";
-
+            clothingCategory.value = "";
 
             clothingForm.style.display =
                 "none";
 
-
-            /* MENSAJE */
 
             alert(
                 "¡Prenda agregada a tu armario! 🎀"
@@ -1859,12 +1198,31 @@ function addClothing() {
 }
 
 
-/* ==================================
-   MOSTRAR PRENDAS
-================================== */
+/* GUARDAR EN EL NAVEGADOR */
+
+function saveClothes() {
+
+    try {
+
+        localStorage.setItem(
+            "wardrobeAI_clothes",
+            JSON.stringify(clothes)
+        );
+
+    } catch (error) {
+
+        alert(
+            "La imagen es demasiado grande para guardarla en el navegador. Prueba con una foto más pequeña. 💗"
+        );
+
+    }
+
+}
+
+
+/* MOSTRAR PRENDAS */
 
 function showClothes() {
-
 
     clothingCount.textContent =
         clothes.length +
@@ -1886,11 +1244,8 @@ function showClothes() {
                 </div>
 
                 <p>
-
                     Tu armario está esperando<br>
-
                     sus primeras prendas.
-
                 </p>
 
             </div>
@@ -1919,47 +1274,83 @@ function showClothes() {
                 "clothing-card";
 
 
-            card.innerHTML = `
+            const image =
+                document.createElement(
+                    "img"
+                );
 
-                <img
-                    src="${clothing.image}"
-                    class="clothing-photo"
-                    alt="${clothing.name}"
-                >
+            image.src =
+                clothing.image;
 
+            image.alt =
+                clothing.name;
 
-                <div
-                    class="clothing-details">
-
-
-                    <h4>
-                        ${clothing.name}
-                    </h4>
+            image.className =
+                "clothing-photo";
 
 
-                    <p>
-                        ${clothing.category}
-                    </p>
+            const details =
+                document.createElement(
+                    "div"
+                );
+
+            details.className =
+                "clothing-details";
 
 
-                    <button
-                        class="delete-clothing"
-                        onclick="deleteClothing(${clothing.id})">
+            const title =
+                document.createElement(
+                    "h4"
+                );
 
-                        ✕ Eliminar
-
-                    </button>
-
-
-                </div>
-
-            `;
+            title.textContent =
+                clothing.name;
 
 
-            clothingGrid.appendChild(
-                card
-            );
+            const category =
+                document.createElement(
+                    "p"
+                );
 
+            category.textContent =
+                clothing.category;
+
+
+            const deleteButton =
+                document.createElement(
+                    "button"
+                );
+
+            deleteButton.className =
+                "delete-clothing";
+
+            deleteButton.textContent =
+                "✕ Eliminar";
+
+
+            deleteButton.onclick =
+                function () {
+
+                    deleteClothing(
+                        clothing.id
+                    );
+
+                };
+
+
+            details.appendChild(title);
+
+            details.appendChild(category);
+
+            details.appendChild(deleteButton);
+
+
+            card.appendChild(image);
+
+            card.appendChild(details);
+
+
+            clothingGrid.appendChild(card);
 
         }
     );
@@ -1967,12 +1358,9 @@ function showClothes() {
 }
 
 
-/* ==================================
-   ELIMINAR PRENDA
-================================== */
+/* ELIMINAR PRENDA */
 
 function deleteClothing(id) {
-
 
     clothes =
         clothes.filter(
@@ -1984,21 +1372,14 @@ function deleteClothing(id) {
         );
 
 
-    localStorage.setItem(
-        "wardrobeAI_clothes",
-        JSON.stringify(clothes)
-    );
-
+    saveClothes();
 
     showClothes();
 
 }
 
-
 </script>
 
-
 </body>
-
 </html>
 ```
