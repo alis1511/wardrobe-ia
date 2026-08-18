@@ -1423,6 +1423,343 @@ function createOutfit(){
 
 </script>
 
+```html
+<!-- CHAT DE WARDROBEAI -->
+
+<section id="ai-chat">
+
+    <div class="title">
+        <h2>Pregúntale a WardrobeAI 💗</h2>
+        <p>Tu asistente personal de estilo ✨</p>
+    </div>
+
+    <div class="ai-chat-box">
+
+        <div id="ai-messages" class="ai-messages">
+
+            <div class="ai-message">
+                <strong>WardrobeAI ✦</strong>
+                <p>
+                    ¡Hola! 💗 Soy tu asistente de estilo.
+                    Puedo ayudarte a crear outfits, combinar colores
+                    y texturas y darte consejos según tu estilo.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="ai-input-box">
+
+            <input
+                type="text"
+                id="ai-input"
+                placeholder="Ej: ¿Qué outfit puedo usar para una fiesta?"
+                autocomplete="off"
+            >
+
+            <button
+                id="ai-send"
+                onclick="sendToAI()">
+                ✨ Enviar
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+/* CHAT */
+
+#ai-chat{
+    background:#fff7fa;
+}
+
+.ai-chat-box{
+    max-width:850px;
+    margin:auto;
+    background:white;
+    border:1px solid #efdce5;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 15px 40px #d99bad22;
+}
+
+.ai-messages{
+    height:400px;
+    overflow-y:auto;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.ai-message{
+    max-width:80%;
+    padding:16px 20px;
+    border-radius:18px;
+    background:#fff0f5;
+    color:#211c20;
+}
+
+.ai-message.user{
+    align-self:flex-end;
+    background:#211c20;
+    color:white;
+}
+
+.ai-message strong{
+    display:block;
+    margin-bottom:7px;
+    color:#df789b;
+}
+
+.ai-message.user strong{
+    color:#f09ab7;
+}
+
+.ai-message p{
+    line-height:1.6;
+}
+
+.ai-input-box{
+    display:flex;
+    gap:10px;
+    padding:18px;
+    border-top:1px solid #efdce5;
+}
+
+#ai-input{
+    flex:1;
+    padding:15px;
+    border:1px solid #ead9e1;
+    border-radius:13px;
+    outline:none;
+    font-size:14px;
+}
+
+#ai-input:focus{
+    border-color:#e783a4;
+}
+
+#ai-send{
+    background:#211c20;
+    color:white;
+    border:none;
+    padding:0 22px;
+    border-radius:13px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+#ai-send:hover{
+    transform:translateY(-1px);
+}
+
+@media(max-width:600px){
+
+    .ai-input-box{
+        flex-direction:column;
+    }
+
+    #ai-send{
+        padding:14px;
+    }
+
+    .ai-message{
+        max-width:90%;
+    }
+
+}
+
+</style>
+
+
+<script>
+
+const WORKER_URL = "PEGA_AQUI_LA_URL_DE_TU_WORKER";
+
+
+async function sendToAI(){
+
+    const input =
+        document.getElementById("ai-input");
+
+    const messages =
+        document.getElementById("ai-messages");
+
+    const message =
+        input.value.trim();
+
+    if(!message){
+        return;
+    }
+
+
+    // Mostrar mensaje del usuario
+
+    messages.innerHTML += `
+
+        <div class="ai-message user">
+
+            <strong>Tú 💗</strong>
+
+            <p>${message}</p>
+
+        </div>
+
+    `;
+
+
+    input.value = "";
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+
+    // Mensaje temporal
+
+    const loading =
+        document.createElement("div");
+
+    loading.className="ai-message";
+
+    loading.innerHTML=`
+
+        <strong>WardrobeAI ✦</strong>
+
+        <p>Estoy pensando... ✨</p>
+
+    `;
+
+    messages.appendChild(loading);
+
+
+    try{
+
+        const response =
+            await fetch(WORKER_URL, {
+
+                method:"POST",
+
+                headers:{
+                    "Content-Type":"application/json"
+                },
+
+                body:JSON.stringify({
+
+                    message:
+                    `Eres WardrobeAI, una asistente personal de moda y estilo.
+
+Ayuda al usuario con:
+- recomendaciones de outfits para diferentes ocasiones
+- combinaciones de prendas
+- colores que combinan
+- texturas que combinan
+- consejos según su estilo personal
+
+Responde de forma clara, amable y útil.
+Puedes usar emojis de manera moderada.
+Si el usuario pregunta por un outfit, explica brevemente por qué funciona.
+
+Pregunta del usuario:
+${message}`
+
+                })
+
+            });
+
+
+        const data =
+            await response.json();
+
+
+        loading.remove();
+
+
+        if(data.error){
+
+            throw new Error(data.error);
+
+        }
+
+
+        messages.innerHTML += `
+
+            <div class="ai-message">
+
+                <strong>WardrobeAI ✦</strong>
+
+                <p>${formatAIResponse(data.answer)}</p>
+
+            </div>
+
+        `;
+
+
+    }catch(error){
+
+        loading.remove();
+
+        messages.innerHTML += `
+
+            <div class="ai-message">
+
+                <strong>WardrobeAI ✦</strong>
+
+                <p>
+                    Ups 💗 No pude conectarme con la IA.
+                    Inténtalo nuevamente.
+                </p>
+
+            </div>
+
+        `;
+
+        console.error(error);
+
+    }
+
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+}
+
+
+function formatAIResponse(text){
+
+    return text
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/\n/g,"<br>");
+
+}
+
+
+// Permitir enviar con Enter
+
+document
+    .getElementById("ai-input")
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key==="Enter"){
+
+                sendToAI();
+
+            }
+
+        }
+    );
+
+</script>
+```
 
 </body>
 </html>
