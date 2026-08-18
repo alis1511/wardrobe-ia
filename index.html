@@ -1649,27 +1649,9 @@ async function sendToAI(){
                     "Content-Type":"application/json"
                 },
 
-                body:JSON.stringify({
-
-                    message:
-                    `Eres WardrobeAI, una asistente personal de moda y estilo.
-
-Ayuda al usuario con:
-- recomendaciones de outfits para diferentes ocasiones
-- combinaciones de prendas
-- colores que combinan
-- texturas que combinan
-- consejos según su estilo personal
-
-Responde de forma clara, amable y útil.
-Puedes usar emojis de manera moderada.
-Si el usuario pregunta por un outfit, explica brevemente por qué funciona.
-
-Pregunta del usuario:
-${message}`
-
-                })
-
+               body: JSON.stringify({
+    message: message
+})
             });
 
 
